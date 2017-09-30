@@ -1,0 +1,2 @@
+class TroubleWord < ApplicationRecord
+end
