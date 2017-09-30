@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @trouble_word.word %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @trouble_word.user_id %>
+</p>
+
+<p>
+  <strong>Conversation:</strong>
+  <%= @trouble_word.conversation_id %>
+</p>
+
+<%= link_to 'Edit', edit_trouble_word_path(@trouble_word) %> |
+<%= link_to 'Back', trouble_words_path %>
