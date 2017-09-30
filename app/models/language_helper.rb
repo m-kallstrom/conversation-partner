@@ -11,14 +11,13 @@ require 'watson/conversation'
     #send Watson call
     #get back and save Watson response
 
-class LanguageLearner
+class LanguageHelper
 
   def self.craft_response(sentence, user)
     gingerice = Switchboard.gingerice_response(sentence)
     watson = Switchboard.watson_response(sentence, user)
     "Gingerice: #{gingerice['result']} ||| Watson: #{watson}"
   end
-
 
 
 end

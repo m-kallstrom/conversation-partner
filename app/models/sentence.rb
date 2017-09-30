@@ -10,11 +10,15 @@ class Sentence < ApplicationRecord
     p response = Switchboard.gingerice_response(self.content)
     mistakes = response["corrections"]
 
-    mistakes.each do |mistake|
-      word = mistake['correct']
-      TroubleWord.create(word: word, user_id: self.user.id, conversation_id: self.conversation.id)
-    end
-    return true
+    if mistakes.any?
+      correction = Correction.create(corrected_sentence: response['result'], sentence: self)
+
+      mistakes.each do |mistake|
+        word = mistake['correct']
+        TroubleWord.create(word: word, correction: correction)
+      end
+      return true
+
   end
 
 end

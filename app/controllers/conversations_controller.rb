@@ -23,7 +23,7 @@ class ConversationsController < ApplicationController
     @sentence.sort_errors
     user_input = @sentence.content
 
-    @final_response = LanguageLearner.craft_response(user_input, current_user)
+    @final_response = LanguageHelper.craft_response(user_input, current_user)
     render :new
 
     # respond_to do |format|
