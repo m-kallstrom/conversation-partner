@@ -22,10 +22,17 @@ class ConversationsController < ApplicationController
     @sentence.sort_errors
     user_input = @sentence.content
 
-    p current_response = @sentence.corrections[0].format_response
-    p @final_response = LanguageHelper.craft_response(user_input, current_user)
 
-    render :show
+
+
+    if @sentence.corrections.any?
+      p current_response = @sentence.corrections[0].format_response
+    else
+      p @final_response = LanguageHelper.watson_says(user_input, current_user)
+    end
+
+
+    render :new
 
     # respond_to do |format|
     #   if @conversation.save
