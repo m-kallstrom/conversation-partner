@@ -16,20 +16,24 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
+
     p params
     @conversation = Conversation.last_by_user(current_user)
     if !@conversation
       @conversation = Conversation.create(user: current_user)
     end
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
-    # @conversation.sentences << @sentence
 
     LanguageHelper.sort_errors(@sentence)
 
-    if @sentence.corrections.any?
-      p @final_response = @sentence.corrections[0].format_response
+    if @conversation.sentences.empty?
+      LanguageHelper.greeting
     else
-      p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
+      if @sentence.corrections.any?
+        p @final_response = @sentence.corrections[0].format_response
+      else
+        p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
+      end
     end
 
     render :new

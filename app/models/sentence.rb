@@ -4,6 +4,10 @@ class Sentence < ApplicationRecord
   has_many :corrections
   has_many :trouble_words, through: :corrections
 
+
+
+
+
   # after_save :sort_errors
 
   # def sort_errors
