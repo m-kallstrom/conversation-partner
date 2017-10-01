@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :trouble_words, through: :corrections
 
 
+  def get_formatted_trouble_words
+    user.trouble_words.map { |tw| tw.corrected_word }
+  end
+
 end

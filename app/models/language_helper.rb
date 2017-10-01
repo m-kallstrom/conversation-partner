@@ -37,6 +37,16 @@ class LanguageHelper
     nouns = tgr.get_nouns(tagged).keys
   end
 
+  def self.mention_trouble_words(user)
+    words = user.get_formatted_trouble_words
+    output = "Here are some words to review: "
+    words.each do |word|
+    output += "#{word}, "
+    end
+    output
+  end
+
+
 end
 
   #control the logic of the reponse

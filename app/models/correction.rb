@@ -15,7 +15,11 @@ class Correction < ApplicationRecord
     if first_word_capitalized == "I"
       if sentence_hash[1] == "am"
         remainder = sentence_hash[2..-1].join(' ')
-        response = "Oh you are #{remainder}? Tell me more about it."
+        if noun_ary.include?(last_word)
+          response = "Oh you are #{remainder}? Tell me more about the #{last_word}."
+        else
+          response = "Oh you are #{remainder}? Tell me more about it."
+        end
       else
         response = "Oh, you #{remainder}?"
       end
