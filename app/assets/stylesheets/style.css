@@ -1,0 +1,95 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+  div.fix-width {
+    max-width: 400px;
+    margin: auto;
+  }
+
+ div.fix-width * {
+  text-align: center;
+ }
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+/*  margin: 0 auto;*/
+  text-align: center;
+  margin-bottom: 15%;
+}
+
+.bottom * {
+  margin: 15px;
+  font-size: 1.2em;
+}
+
+.landing {
+  width: 100%;
+  height: 100%;
+  margin-top: 20%;
+}
+
+/*.fix-width {
+  vertical-align: center;
+}*/
+
+.g {
+  background: url("parrot.jpg") rgba(0,0,0,0.6);
+  height: 100%;
+  /*padding: 0;*/
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+label {
+  display: none;
+}
+
+.input {
+  opacity: .8;
+}
+
+.C {
+  color: #01579B;
+  background-color: white;
+}
+
+.back {
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.about {
+  background-color: white;
+  opacity: .7;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 10px;
+  text-align: center;
+}
+/*************************/
+.conversation {
+
+}
+
+.form-control {
+  width: 100%;
+  resize: none;
+}
+
+.main-conv {
+  margin: 3%;
+  text-align: center;
+  /*margin: 50px;*/
+}
+
+
+
+
+
+
+
