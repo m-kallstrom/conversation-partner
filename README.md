@@ -1,5 +1,5 @@
 # README
-
+[![Coverage Status](https://coveralls.io/repos/github/m-kallstrom/conversation-partner/badge.svg?branch=master)](https://coveralls.io/github/m-kallstrom/conversation-partner?branch=master)
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
