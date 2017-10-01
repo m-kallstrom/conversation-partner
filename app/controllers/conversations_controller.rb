@@ -33,8 +33,9 @@ class ConversationsController < ApplicationController
     else
       p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
       if @final_response.nil?
-        @final_response = LanguageHelper.mention_trouble_words(current_user)
+        @final_response = LanguageHelper.mention_trouble_word(current_user)
       end
+    end
     # end
 
 
