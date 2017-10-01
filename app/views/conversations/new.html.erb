@@ -6,7 +6,9 @@
     <%= f.submit 'Submit', class: "form_submit_button btn btn-info full-width conv-buttons" %>
   <% end %>
 
-   <%= link_to 'refresh!', '/conversations/main',  class: "btn btn-success C input conv-buttons" %>
+   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons" %>
+   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons" %>
+
 
 <!--   <div class="ta-response">
     <textarea class="form-control TA" readonly rows="11">
@@ -20,7 +22,7 @@
       <% if @final_response %>
         <%= @final_response %>
       <% end %>
-  </div>
+   </div>
 
 
 </div>

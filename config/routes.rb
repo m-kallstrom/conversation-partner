@@ -5,13 +5,15 @@ Rails.application.routes.draw do
 
   get '/conversations/main' => 'conversations#new', as: 'new_conservation'
 
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
-  get '/about' => 'project#about'
+  get '/conversations/reset' => 'conversations#destroy', as: 'reset_conversation'
+
+  get  '/login'  => 'sessions#new'
+  post '/login'  => 'sessions#create'
+  get  '/logout' => 'sessions#destroy'
+  get  '/about'  => 'project#about'
 
   resources :sentences, only: [:new, :create]
-  resources :conversations, only: [:show, :create, :new]
+  resources :conversations, only: [:show, :create, :new, :destroy]
   resources :users, only: [:show, :create, :new]
 
 end

@@ -31,6 +31,28 @@ class LanguageHelper
     # return true
   end
 
+  def self.get_nouns(text)
+    tgr = EngTagger.new
+    tagged = tgr.add_tags(text)
+    nouns = tgr.get_nouns(tagged).keys
+  end
+
+
+  def self.mention_trouble_word(user)
+    word = user.get_formatted_trouble_words.sample
+    output = "Here is a word to review: #{word}."
+  end
+
+  # def self.mention_trouble_words(user)
+  #   words = user.get_formatted_trouble_words
+  #   output = "Here are some words to review: "
+  #   words.each do |word|
+  #   output += "#{word}, "
+  #   end
+  #   output[0...-1] + "."
+  # end
+
+
 end
 
   #control the logic of the reponse
