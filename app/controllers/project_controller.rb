@@ -9,7 +9,7 @@ class ProjectController < ApplicationController
   end
 
   def about
-      render layout: "auth"
+    render layout: "auth"
   end
 
 end
