@@ -5,15 +5,37 @@ class Correction < ApplicationRecord
   has_one :user, through: :conversation
 
   def format_response
-    sentence_hash = corrected_sentence.split(" ")
-    first_word = sentence_hash[0].capitalize
+    sentence_hash = handle_punctuation.split(" ")
+    first_word_capitalized = sentence_hash[0].capitalize
+    first_word_not_capitalized = sentence_hash[0].downcase
+    last_word = sentence_hash[-1]
     remainder = sentence_hash[1..-1].join(' ')
-    if first_word == "I"
-      response = "Oh, you #{remainder}?"
+    if first_word_capitalized == "I"
+      if sentence_hash[1] == "am"
+        remainder = sentence_hash[2..-1].join(' ')
+        response = "Oh you are #{remainder}? Tell me more about it."
+      else
+        response = "Oh, you #{remainder}?"
+      end
+    elsif first_word_capitalized == "My"
+      response = "Oh, you say your #{remainder}?"
     else
-      response = "not an I statement"
+      remainder = first_word_not_capitalized + " " + remainder
+      response = "So, you say #{remainder}?"
     end
     response
   end
+
+  def handle_punctuation
+    marks = [".", "?", "!"]
+    if marks.include?(corrected_sentence[-1])
+      result = corrected_sentence.scan(/.*(?=.)/)[0]
+    else
+      result = corrected_sentence
+    end
+  end
+
+# select every up to the final punctuation
+# txt.scan(/.*(?=.)/).first
 
 end

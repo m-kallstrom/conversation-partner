@@ -6,6 +6,10 @@ class Conversation < ApplicationRecord
   belongs_to :user
 
 
+  def self.last_by_user(user)
+    Conversation.where(user: user).order('id DESC').limit(1)[0]
+  end
+
   # def trouble_word_definitions
   #   definitions = []
   #   trouble_words.each do |word|

@@ -12,6 +12,10 @@ class LanguageHelper
     watson = Switchboard.watson_response(input, user)
   end
 
+  def self.greeting
+    "Welcome Back -- [give word of the day]?"
+  end
+
   def self.sort_errors(sentence)
     response = Switchboard.gingerice_response(sentence.content)
     mistakes = response["corrections"]
