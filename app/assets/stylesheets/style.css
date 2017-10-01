@@ -1,3 +1,7 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
   div.fix-width {
     max-width: 400px;
     margin: auto;
@@ -59,8 +63,29 @@ label {
   text-shadow: 1px 1px black;
 }
 
+.about {
+  background-color: white;
+  opacity: .7;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 10px;
+  text-align: center;
+}
+/*************************/
+.conversation {
 
+}
 
+.form-control {
+  width: 100%;
+  resize: none;
+}
+
+.main-conv {
+  margin: 3%;
+  text-align: center;
+  /*margin: 50px;*/
+}
 
 
 
