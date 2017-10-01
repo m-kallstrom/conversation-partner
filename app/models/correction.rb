@@ -11,8 +11,11 @@ class Correction < ApplicationRecord
     remainder = sentence_hash[1..-1].join(' ')
     if first_word_capitalized == "I"
       response = "Oh, you #{remainder}?"
+    elsif first_word_capitalized == "My"
+      response = "Oh, you say your #{remainder}?"
     else
-      response = "So, you say #{first_word_not_capitalized + remainder}?"
+      remainder = first_word_not_capitalized + " " + remainder
+      response = "So, you say #{remainder}?"
     end
     response
   end
