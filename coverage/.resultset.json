@@ -473,7 +473,16 @@
         1,
         null,
         1,
+        3,
+        3,
+        null,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/apprentice/final_project/conversation_partner/app/models/sentence.rb": [
@@ -614,6 +623,6 @@
         null
       ]
     },
-    "timestamp": 1506890132
+    "timestamp": 1506890300
   }
 }
