@@ -59,7 +59,14 @@ label {
   text-shadow: 1px 1px black;
 }
 
-
+.about {
+  background-color: white;
+  opacity: .7;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 10px;
+  text-align: center;
+}
 
 
 
