@@ -17,11 +17,11 @@ class Switchboard
     results = DictionaryLookup::Base.define(word)
   end
 
-  # def self.oxford_dictionary_response(word)
-  #   client = call_dictionary
-  #   entry = client.entry[word]
-  #   entry.lexical_entries.entries.senses
-  # end
+  def self.oxford_dictionary_response(word)
+    client = call_dictionary
+    entry = client.entry[word]
+    entry.lexical_entries.entries.senses
+  end
 
 private
 
