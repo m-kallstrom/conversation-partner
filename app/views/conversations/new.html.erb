@@ -2,20 +2,27 @@
   <h1>Start a conversation!</h1>
 
   <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}  do |f| %>
-    <%= f.text_area :content, class: "form-control"%>
-    <%= f.submit 'Submit', class: "form_submit_button btn btn-info full-width" %>
+    <%= f.text_area :content, class: "form-control C"%>
+    <%= f.submit 'Submit', class: "form_submit_button btn btn-info full-width conv-buttons" %>
   <% end %>
 
+   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons" %>
+   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons" %>
 
-   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input" %>
-   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input" %>
 
-  <!-- #where all the magic happens -->
-  <div class= "response">
-    <% if @final_response %>
-      <%= @final_response %>
-    <% end %>
-  </div>
+<!--   <div class="ta-response">
+    <textarea class="form-control TA" readonly rows="11">
+      < % if @final_response %>
+        < %= @final_response %>
+      < % end %>
+    </textarea>
+  </div> -->
+
+    <div class="form-control TA">
+      <% if @final_response %>
+        <%= @final_response %>
+      <% end %>
+   </div>
 
 
 </div>

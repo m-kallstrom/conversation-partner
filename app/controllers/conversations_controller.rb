@@ -6,9 +6,9 @@ class ConversationsController < ApplicationController
   def new
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
-  end
-
-
+  end 
+  
+  # POST /conversations
   def create
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
@@ -32,20 +32,9 @@ class ConversationsController < ApplicationController
         @final_response = LanguageHelper.mention_trouble_word(current_user)
       end
     end
-    # end
-
 
     render :new
 
-    # respond_to do |format|
-    #   if @conversation.save
-    #     format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
-    #     format.json { render :show, status: :created, location: @conversation }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @conversation.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
 
