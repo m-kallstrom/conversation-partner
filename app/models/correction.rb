@@ -31,7 +31,7 @@ class Correction < ApplicationRecord
     elsif first_word.downcase == "my"
       response = "Oh, you say your #{remainder}?"
     else
-      remainder = first_word_not_capitalized + " " + remainder
+      remainder = first_word.downcase + " " + remainder
       response = "So, you say #{remainder}?"
     end
     response

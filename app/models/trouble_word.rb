@@ -6,7 +6,7 @@ class TroubleWord < ApplicationRecord
 
   def definitions
     definitions = []
-    entries = Switchboard.get_definition(self.corrected_word)
+    entries = Switchboard.get_definition(self.corrected_word.downcase)
     entries.each do |entry|
       definitions << entry.denotation
     end

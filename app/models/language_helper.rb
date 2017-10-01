@@ -25,9 +25,9 @@ class LanguageHelper
 
       mistakes.each do |mistake|
         allowed = ["i", "my"]
-        word = mistake['correct']
+        word = mistake['correct'].split(" ").last
         if !allowed.include?(word.downcase)
-          TroubleWord.create(corrected_word: word, correction: correction)
+          TroubleWord.create(corrected_word: word.downcase, correction: correction)
         end
       end
     end
@@ -52,8 +52,14 @@ class LanguageHelper
   end
 
   def self.mention_trouble_word(user)
-    word = user.get_formatted_trouble_words.sample
-    output = "Here is a word to review: #{word}."
+    return "Sign up for more information!" if user.nil?
+    word = user.trouble_words.sample
+    if word && word.definitions && word.definitions.any?
+      p definition = word.definitions.first
+      "Here is a word to review: #{word.corrected_word}. It means '#{definition}'."
+    else
+      "Here is a word to review: #{word.corrected_word}."
+    end
   end
 
   # def self.mention_trouble_words(user)

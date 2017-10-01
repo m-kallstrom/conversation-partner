@@ -10,22 +10,24 @@ class ConversationsController < ApplicationController
 
 
   def create
-    p params
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
-      @conversation = Conversation.create(user_id: current_user.id)
+      if current_user
+        @conversation = Conversation.create(user_id: current_user.id)
+      else
+        @conversation = Conversation.create
+      end
       session[:conversation_id] = @conversation.id
     end
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)
 
-
     if @sentence.corrections.any?
-      p @final_response = @sentence.corrections[0].format_response
+      @final_response = @sentence.corrections[0].format_response
     else
-      p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
+      @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
       if @final_response.nil?
         @final_response = LanguageHelper.mention_trouble_word(current_user)
       end
