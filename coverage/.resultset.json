@@ -371,7 +371,19 @@
         1,
         null,
         1,
+        4,
+        null,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/apprentice/final_project/conversation_partner/app/models/language_helper.rb": [
@@ -635,6 +647,6 @@
         null
       ]
     },
-    "timestamp": 1506890621
+    "timestamp": 1506890848
   }
 }
