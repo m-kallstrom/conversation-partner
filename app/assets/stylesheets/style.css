@@ -71,9 +71,17 @@ label {
   border-radius: 10px;
   text-align: center;
 }
-/*************************/
-.conversation {
 
+/*************************/
+
+.conversation  {
+/*background color in conversation*/
+  background: #E8F5E9;
+  height: 100%;
+}
+
+.conv-buttons {
+  margin: 10px;
 }
 
 .form-control {
@@ -86,6 +94,19 @@ label {
   text-align: center;
   /*margin: 50px;*/
 }
+
+.ta-response {
+}
+
+.TA {
+  min-height: 100px;
+  height:auto;
+/*background color in response textarea */
+  background-color: #FFD180;
+  color: green;
+}
+
+
 
 
 
