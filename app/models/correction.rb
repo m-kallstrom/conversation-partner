@@ -5,11 +5,13 @@ class Correction < ApplicationRecord
   has_one :user, through: :conversation
 
   def format_response
+    noun_ary = LanguageHelper.get_nouns(corrected_sentence)
     sentence_hash = handle_punctuation.split(" ")
     first_word_capitalized = sentence_hash[0].capitalize
     first_word_not_capitalized = sentence_hash[0].downcase
     last_word = sentence_hash[-1]
     remainder = sentence_hash[1..-1].join(' ')
+
     if first_word_capitalized == "I"
       if sentence_hash[1] == "am"
         remainder = sentence_hash[2..-1].join(' ')
@@ -25,6 +27,7 @@ class Correction < ApplicationRecord
     end
     response
   end
+
 
   def handle_punctuation
     marks = [".", "?", "!"]

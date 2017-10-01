@@ -26,15 +26,15 @@ class ConversationsController < ApplicationController
 
     LanguageHelper.sort_errors(@sentence)
 
-    if @conversation.sentences.empty?
-      LanguageHelper.greeting
-    else
+    # if @conversation.sentences.empty?
+    #   LanguageHelper.greeting
+    # else
       if @sentence.corrections.any?
         p @final_response = @sentence.corrections[0].format_response
       else
         p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
       end
-    end
+    # end
 
     render :new
 

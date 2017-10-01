@@ -36,6 +36,7 @@ gem 'watson-conversation'
 gem 'redis'
 gem 'oxford_dictionary'
 gem 'dictionary_lookup'
+gem 'engtagger'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

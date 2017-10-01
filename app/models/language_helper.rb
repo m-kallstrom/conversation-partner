@@ -31,6 +31,12 @@ class LanguageHelper
     # return true
   end
 
+  def self.get_nouns(text)
+    tgr = EngTagger.new
+    tagged = tgr.add_tags(text)
+    nouns = tgr.get_nouns(tagged).keys
+  end
+
 end
 
   #control the logic of the reponse
