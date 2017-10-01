@@ -78,6 +78,7 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
+    engtagger (0.2.1)
     equalizer (0.0.11)
     erubi (1.6.1)
     execjs (2.7.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   coveralls
   dictionary_lookup
   dotenv-rails
+  engtagger
   faraday
   gingerice
   jbuilder (~> 2.5)
