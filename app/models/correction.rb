@@ -8,9 +8,15 @@ class Correction < ApplicationRecord
     sentence_hash = handle_punctuation.split(" ")
     first_word_capitalized = sentence_hash[0].capitalize
     first_word_not_capitalized = sentence_hash[0].downcase
+    last_word = sentence_hash[-1]
     remainder = sentence_hash[1..-1].join(' ')
     if first_word_capitalized == "I"
-      response = "Oh, you #{remainder}?"
+      if sentence_hash[1] == "am"
+        remainder = sentence_hash[2..-1].join(' ')
+        response = "Oh you are #{remainder}? Tell me more about the #{last_word}."
+      else
+        response = "Oh, you #{remainder}?"
+      end
     elsif first_word_capitalized == "My"
       response = "Oh, you say your #{remainder}?"
     else
