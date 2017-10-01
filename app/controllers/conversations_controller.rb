@@ -1,20 +1,14 @@
 class ConversationsController < ApplicationController
 
-  # GET /conversations/1
-  # GET /conversations/1.json
   def show
   end
 
-  # GET /conversations/main
-  #This is the main page of the app that is responsible for creating a new conversation and updating it as the user types
   def new
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
   end
 
 
-  # POST /conversations
-  # POST /conversations.json
   def create
     p params
     if current_conversation

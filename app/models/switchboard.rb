@@ -31,7 +31,7 @@ private
 
   #returns JSON object
   def self.call_watson(sentence, user)
-    watson = load_watson
+    p watson = load_watson
     init_response = watson.talk("user#{user.id}", "Hi")
     response = watson.talk("user#{user.id}", sentence)
   end
