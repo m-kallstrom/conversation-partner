@@ -1,5 +1,9 @@
 class ConversationsController < ApplicationController
 
+  def history
+    @conversation = Conversation.find(params[:id])
+    render :show
+  end
 
   def show
   end

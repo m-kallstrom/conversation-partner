@@ -1,7 +1,7 @@
 <div class="profile profile-conversation">
   <ul>
-    <% @conversation.sentences.each do |sentense| %>
-      <li><%= sentense.content %></li>
+    <% @trouble_words.each do |word| %>
+      <li><%= word.corrected_word %></li>
     <% end %>
   </ul>
 </div>

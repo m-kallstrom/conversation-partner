@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'project#landing'
 
+  get '/conversations/history' => 'conversations#history'
+
   get '/conversations/main' => 'conversations#new', as: 'new_conservation'
 
   get '/conversations/reset' => 'conversations#destroy', as: 'reset_conversation'
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   get  '/logout' => 'sessions#destroy'
   get  '/about'  => 'project#about'
 
+  resources :trouble_words, only: [:index]
   resources :sentences, only: [:new, :create]
   resources :conversations, only: [:show, :create, :new, :destroy]
   resources :users, only: [:show, :create, :new]
