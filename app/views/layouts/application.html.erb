@@ -12,7 +12,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <nav>
+    <% if current_user %>
+      Hello, <%= current_user.username %>! | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/users/new' %>
+    <% end %>
+  </nav>
   <body class="conversation">
 
    <main class="container-wide">
