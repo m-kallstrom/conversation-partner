@@ -9,32 +9,33 @@ class ConversationsController < ApplicationController
   #This is the main page of the app that is responsible for creating a new conversation and updating it as the user types
   def new
     @sentence = Sentence.new
-    @conversation = Conversation.new
+    current_conversation ||= @conversation = Conversation.new
   end
 
 
   # POST /conversations
   # POST /conversations.json
   def create
-
     p params
-    @conversation = Conversation.last_by_user(current_user)
-    if !@conversation
-      @conversation = Conversation.create(user: current_user)
+    if current_conversation
+      @conversation = Conversation.find(current_conversation.id)
+    else
+      @conversation = Conversation.create(user_id: current_user.id)
+      session[:conversation_id] = @conversation.id
     end
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)
 
-    if @conversation.sentences.empty?
-      LanguageHelper.greeting
-    else
+    # if @conversation.sentences.empty?
+    #   #LanguageHelper.greeting
+    # else
       if @sentence.corrections.any?
         p @final_response = @sentence.corrections[0].format_response
       else
         p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
       end
-    end
+    # end
 
     render :new
 
@@ -49,6 +50,11 @@ class ConversationsController < ApplicationController
     # end
   end
 
+
+  def destroy
+    session[:conversation_id] = nil
+    redirect_to new_conversation_path
+  end
 
   # private
   #   # Use callbacks to share common setup or constraints between actions.
