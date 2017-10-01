@@ -1,7 +1,6 @@
 class ConversationsController < ApplicationController
 
-  # GET /conversations/1
-  # GET /conversations/1.json
+
   def show
   end
 
@@ -14,9 +13,7 @@ class ConversationsController < ApplicationController
 
 
   # POST /conversations
-  # POST /conversations.json
   def create
-    p params
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
@@ -29,27 +26,16 @@ class ConversationsController < ApplicationController
 
 
     if @sentence.corrections.any?
-      p @final_response = @sentence.corrections[0].format_response
+      @final_response = @sentence.corrections[0].format_response
     else
-      p @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
+      @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
       if @final_response.nil?
         @final_response = LanguageHelper.mention_trouble_word(current_user)
       end
     end
-    # end
-
 
     render :new
 
-    # respond_to do |format|
-    #   if @conversation.save
-    #     format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
-    #     format.json { render :show, status: :created, location: @conversation }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @conversation.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
 
