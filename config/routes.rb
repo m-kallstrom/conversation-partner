@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   get '/about' => 'project#about'
 
-
+  resources :sentences, only: [:new, :create]
   resources :conversations, only: [:show, :create, :new]
   resources :users, only: [:show, :create, :new]
 
