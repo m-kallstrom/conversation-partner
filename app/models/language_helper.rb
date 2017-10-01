@@ -12,6 +12,20 @@ class LanguageHelper
     watson = Switchboard.watson_response(input, user)
   end
 
+  def self.sort_errors(sentence)
+    response = Switchboard.gingerice_response(sentence.content)
+    mistakes = response["corrections"]
+
+    if mistakes.any?
+      correction = Correction.create(corrected_sentence: response['result'], sentence: sentence)
+
+      mistakes.each do |mistake|
+        word = mistake['correct']
+        TroubleWord.create(corrected_word: word, correction: correction)
+      end
+    end
+    # return true
+  end
 
 end
 

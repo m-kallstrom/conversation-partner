@@ -10,9 +10,11 @@ class SentencesController < ApplicationController
     p params
     @conversation = Conversation.find_or_create_by(user_id: params[:user_id])
     session[:conversation_id] = @conversation.id
-    @sentence = Sentence.create(content: params[:content])
+    @sentence = Sentence.create(content: params[:content], user: current_user, conversation: @conversation)
     @conversation.sentences << @sentence
-    # @sentence.sort_errors
+    p "------------------"
+    p @sentence
+    p "----------------"
     user_input = @sentence.content
 
     if @sentence.corrections.any?

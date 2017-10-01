@@ -17,15 +17,17 @@ class ConversationsController < ApplicationController
   # POST /conversations.json
   def create
     p params
-    @conversation = Conversation.find_or_create_by(user_id: params[:user_id])
-    session[:conversation_id] = @conversation.id
-    @sentence = Sentence.create(content: params[:content])
+    @conversation = Conversation.find_or_create_by(user: current_user)
+    # this will need refactoring because a user can have more than one conversation, and this method will always find the first conversation and never create a new one if a user has a conversation. 
+    @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
     @conversation.sentences << @sentence
-    # @sentence.sort_errors
+
     user_input = @sentence.content
 
+    LanguageHelper.sort_errors(@sentence)
+
     if @sentence.corrections.any?
-      p current_response = @sentence.corrections[0].format_response
+      p @final_response = @sentence.corrections[0].format_response
     else
       p @final_response = LanguageHelper.watson_says(user_input, current_user)
     end
