@@ -7,13 +7,15 @@
   <% end %>
 
 
-   <%= link_to 'refresh!', '/conversations/main',  class: "btn btn-success C input" %>
+   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input" %>
+   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input" %>
 
   <!-- #where all the magic happens -->
-  <% if @final_response %>
-    <%= @final_response %>
-  <% end %>
-
+  <div class= "response">
+    <% if @final_response %>
+      <%= @final_response %>
+    <% end %>
+  </div>
 
 
 </div>

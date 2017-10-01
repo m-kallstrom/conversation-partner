@@ -9,19 +9,18 @@ class ConversationsController < ApplicationController
   #This is the main page of the app that is responsible for creating a new conversation and updating it as the user types
   def new
     @sentence = Sentence.new
-    @conversation = Conversation.new
+    current_conversation ||= @conversation = Conversation.new
   end
 
 
   # POST /conversations
   # POST /conversations.json
   def create
-
     p params
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
-      @conversation = Conversation.new(user_id: current_user)
+      @conversation = Conversation.create(user_id: current_user.id)
       session[:conversation_id] = @conversation.id
     end
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
@@ -54,6 +53,7 @@ class ConversationsController < ApplicationController
 
   def destroy
     session[:conversation_id] = nil
+    redirect_to new_conversation_path
   end
 
   # private
