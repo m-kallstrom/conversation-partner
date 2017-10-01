@@ -14,7 +14,7 @@
   </head>
   <nav>
     <% if current_user %>
-      Hello, <%= current_user.username %>! | <%= link_to "Logout", '/logout' %>
+      Hello, <%= current_user.username %>! | <%= link_to "Logout", '/logout' %> | <%= link_to "profile", "/users/#{current_user.id}" %>
     <% else %>
       <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/users/new' %>
     <% end %>
