@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def get_formatted_trouble_words
     all_words = trouble_words.map { |tw| tw.corrected_word }
-    longer_words = all_words.select { |word| word.length >= 4 }.uniq.sample(4)
+    longer_words = all_words.select { |word| word.length >= 4 }
   end
 
 end
