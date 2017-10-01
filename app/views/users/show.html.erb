@@ -1,0 +1,15 @@
+<div class="profile">
+  <h3>Profile</h3>
+  <div>
+    <p> Username:<%= @user.username %></p>
+    <p> Email:<%= @user.email %></p>
+    <p> Total conversations: <%= @user.conversations.count %></p>
+    <p> See previous conversations:</p>
+
+    <% @user.conversations.each do |conversation| %>
+      <%= conversation.created_at %>
+    <% end %>
+
+
+  </div>
+</div>
