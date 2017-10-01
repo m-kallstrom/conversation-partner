@@ -5,14 +5,19 @@ class Correction < ApplicationRecord
   has_one :user, through: :conversation
 
   def format_response
+
+    # get nouns to check
     noun_ary = LanguageHelper.get_nouns(corrected_sentence)
-    sentence_hash = handle_punctuation.split(" ")
-    first_word_capitalized = sentence_hash[0].capitalize
-    first_word_not_capitalized = sentence_hash[0].downcase
+
+     #replace my with your for response
+    sentence_hash = handle_punctuation.split(" ").map!{|word| word.downcase == "my" ? 'your' : word }
+
+    first_word = sentence_hash[0]
     last_word = sentence_hash[-1]
     remainder = sentence_hash[1..-1].join(' ')
 
-    if first_word_capitalized == "I"
+    #Handle common I and My statements
+    if first_word.downcase == "i"
       if sentence_hash[1] == "am"
         remainder = sentence_hash[2..-1].join(' ')
         if noun_ary.include?(last_word)
@@ -23,10 +28,10 @@ class Correction < ApplicationRecord
       else
         response = "Oh, you #{remainder}?"
       end
-    elsif first_word_capitalized == "My"
+    elsif first_word.downcase == "my"
       response = "Oh, you say your #{remainder}?"
     else
-      remainder = first_word_not_capitalized + " " + remainder
+      remainder = first_word.downcase + " " + remainder
       response = "So, you say #{remainder}?"
     end
     response
@@ -36,13 +41,11 @@ class Correction < ApplicationRecord
   def handle_punctuation
     marks = [".", "?", "!"]
     if marks.include?(corrected_sentence[-1])
-      result = corrected_sentence.scan(/.*(?=.)/)[0]
+      result = corrected_sentence.scan(/.*(?=.)/).first
     else
       result = corrected_sentence
     end
   end
 
-# select every up to the final punctuation
-# txt.scan(/.*(?=.)/).first
 
 end

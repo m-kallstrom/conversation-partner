@@ -24,8 +24,11 @@ class LanguageHelper
       correction = Correction.create(corrected_sentence: response['result'], sentence: sentence)
 
       mistakes.each do |mistake|
-        word = mistake['correct']
-        TroubleWord.create(corrected_word: word, correction: correction)
+        allowed = ["i", "my"]
+        word = mistake['correct'].split(" ").last
+        if !allowed.include?(word.downcase)
+          TroubleWord.create(corrected_word: word.downcase, correction: correction)
+        end
       end
     end
     # return true
@@ -38,13 +41,29 @@ class LanguageHelper
   end
 
 
+  def self.get_word_of_the_day(user)
+    if user.trouble_words.empty?
+      "No trouble words designated."
+    else
+      word = user.trouble_words.sample
+      definition = word.definitions.first
+      "Your word of the day is #{word.corrected_word}. The definition is '#{definition}'."
+    end
+  end
+
   def self.mention_trouble_word(user)
-    word = user.get_formatted_trouble_words.sample
-    output = "Here is a word to review: #{word}."
+    return "Sign up for more information!" if user.nil?
+    word = user.trouble_words.sample
+    if word && word.definitions && word.definitions.any?
+      p definition = word.definitions.first
+      "Here is a word to review: #{word.corrected_word}. It means '#{definition}'."
+    else
+      "Here is a word to review: #{word.corrected_word}."
+    end
   end
 
   # def self.mention_trouble_words(user)
-  #   words = user.get_formatted_trouble_words
+  #   words = user.get_formatted_trouble_words.uniq.sample(4)
   #   output = "Here are some words to review: "
   #   words.each do |word|
   #   output += "#{word}, "

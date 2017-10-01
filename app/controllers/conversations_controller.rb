@@ -8,26 +8,26 @@ class ConversationsController < ApplicationController
   def show
   end
 
-  # GET /conversations/main
-  #This is the main page of the app that is responsible for creating a new conversation and updating it as the user types
   def new
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
-  end
-
-
+  end 
+  
   # POST /conversations
   def create
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
-      @conversation = Conversation.create(user_id: current_user.id)
+      if current_user
+        @conversation = Conversation.create(user_id: current_user.id)
+      else
+        @conversation = Conversation.create
+      end
       session[:conversation_id] = @conversation.id
     end
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)
-
 
     if @sentence.corrections.any?
       @final_response = @sentence.corrections[0].format_response

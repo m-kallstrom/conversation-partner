@@ -31,9 +31,14 @@ private
 
   #returns JSON object
   def self.call_watson(sentence, user)
+    if user.nil?
+      user_name = "test"
+    else
+      user_name ="user#{user.id}"
+    end
     watson = load_watson
-    init_response = watson.talk("user#{user.id}", "Hi")
-    response = watson.talk("user#{user.id}", sentence)
+    init_response = watson.talk(user_name, "Hi")
+    response = watson.talk(user_name, sentence)
   end
 
   def self.call_oxford_dictionary
