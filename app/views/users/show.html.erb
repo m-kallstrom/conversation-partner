@@ -1,15 +1,22 @@
 <div class="profile">
   <h3>Profile</h3>
   <div>
-    <p> Username:<%= @user.username %></p>
-    <p> Email:<%= @user.email %></p>
+    <p> Username: <%= @user.username %></p>
+    <p> Email: <%= @user.email %></p>
     <p> Total conversations: <%= @user.conversations.count %></p>
     <p> See previous conversations:</p>
+    <div>
+      <%= form_tag("/conversations/history", method: "get") do |form| %>
+        <%= select_tag(:id, options_for_select(@user.conversations.map{|convo| [convo.created_at, convo.id] }), class: "form-control full-width limit-dropdown") %>
+        <%= submit_tag("view", class: "btn btn-warning input") %>
+      <% end %>
+    </div>
 
-    <% @user.conversations.each do |conversation| %>
-      <%= conversation.created_at %>
-    <% end %>
-
-
+    <p> See trouble words:</p>
+      <%= form_tag("/trouble_words", method: "get") do |form| %>
+        <%= select_tag(:id, options_for_select(@user.trouble_words.map{|word| [word.corrected_word, word.id] }), class: "form-control full-width limit-dropdown") %>
+        <%= submit_tag("view", class: "btn btn-warning input") %>
+      <% end %>
   </div>
 </div>
+

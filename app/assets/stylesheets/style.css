@@ -31,15 +31,12 @@ body {
   margin-top: 20%;
 }
 
-/*.fix-width {
-  vertical-align: center;
-}*/
-
-.g {
+#auth {
   background: url("parrot.jpg") rgba(0,0,0,0.6);
   height: 100%;
-  /*padding: 0;*/
-  background-attachment: fixed;
+  width: 100%;
+  z-index: -10;
+  position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -111,10 +108,20 @@ label {
 .profile {
   margin: 5px;
   background-color: #CFD8DC;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.profile-conversation {
+
 }
 
 
-
+/*    <%= form_tag("/conversations/history", method: "get") do |form| %>
+    Select one:  <%= collection_select_tag(:conversation, :conversation_id, @user.conversations, :id, :created_at) %>
+    <%= submit_tag("view", class: "btn btn-success input") %>
+    <!-- < % end %> -->
+    <% end %>*/
 
 
 
