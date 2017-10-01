@@ -18,7 +18,7 @@ class ConversationsController < ApplicationController
   def create
     p params
     @conversation = Conversation.find_or_create_by(user: current_user)
-    # session[:conversation_id] = @conversation.id
+    # this will need refactoring because a user can have more than one conversation, and this method will always find the first conversation and never create a new one if a user has a conversation. 
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
     @conversation.sentences << @sentence
 
