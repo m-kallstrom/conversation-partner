@@ -12,10 +12,6 @@ class LanguageHelper
     watson = Switchboard.watson_response(input, user)
   end
 
-  def self.greeting
-    "Welcome Back -- [give word of the day]?"
-  end
-
   def self.sort_errors(sentence)
     response = Switchboard.gingerice_response(sentence.content)
     mistakes = response["corrections"]
@@ -40,7 +36,6 @@ class LanguageHelper
     nouns = tgr.get_nouns(tagged).keys
   end
 
-
   def self.get_word_of_the_day(user)
     if user.trouble_words.empty?
       "No trouble words designated."
@@ -62,7 +57,6 @@ class LanguageHelper
     end
   end
 
-
   def self.daily_word
     word = Switchboard.scrape_daily_word
     definition = get_primary_definition(word)
@@ -78,7 +72,6 @@ class LanguageHelper
     definitions[0]
   end
 
-  #errors are sorted here
   def self.process_response(sentence, user)
     if sentence.asks_for_definition?
       response = sentence.define_user_word
