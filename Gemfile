@@ -37,6 +37,7 @@ gem 'redis'
 gem 'oxford_dictionary'
 gem 'dictionary_lookup'
 gem 'engtagger'
+gem 'wordnik'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

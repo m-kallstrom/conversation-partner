@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Switchboard
 
   #returns string
@@ -21,6 +23,18 @@ class Switchboard
     client = call_dictionary
     entry = client.entry[word]
     entry.lexical_entries.entries.senses
+  end
+
+  def self.scrape_daily_word
+    page = Nokogiri::HTML(open("http://www.learnersdictionary.com/word-of-the-day/"))
+    word = page.css('.hw_txt').text
+    word = word[0..( word.length/2 - 1)]
+  end
+
+  def self.get_learners_word(word)
+    key = ENV['MERRIAM_WEBSTER_API_KEY']
+    uri = URI("http://www.dictionaryapi.com/api/v1/references/learners/xml/#{word}?key=#{key}")
+    Net::HTTP.get(uri)
   end
 
 private

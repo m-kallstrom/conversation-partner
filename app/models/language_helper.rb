@@ -61,6 +61,21 @@ class LanguageHelper
     end
   end
 
+
+  def self.daily_word
+    word = Switchboard.scrape_daily_word
+    definition = get_primary_definition(word)
+    output = "Your daily word is '#{word}. It means '#{definition}'."
+  end
+
+  def self.get_primary_definition(word)
+    definitions = []
+    entries = Switchboard.get_definition(word)
+    entries.each do |entry|
+      definitions << entry.denotation
+    end
+    definitions[0]
+  end
   # def self.mention_trouble_words(user)
   #   words = user.get_formatted_trouble_words.uniq.sample(4)
   #   output = "Here are some words to review: "
