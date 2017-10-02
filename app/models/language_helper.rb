@@ -33,6 +33,7 @@ class LanguageHelper
     end
   end
 
+  # returns array of nouns
   def self.get_nouns(text)
     tgr = EngTagger.new
     tagged = tgr.add_tags(text)
@@ -54,7 +55,7 @@ class LanguageHelper
     return "Sign up for more information!" if user.nil?
     word = user.trouble_words.sample
     if word && word.definitions && word.definitions.any?
-      p definition = word.definitions.first
+      definition = word.definitions.first
       "Here is a word to review: #{word.corrected_word}. It means '#{definition}'."
     else
       "Here is a word to review: #{word.corrected_word}."
@@ -76,6 +77,25 @@ class LanguageHelper
     end
     definitions[0]
   end
+
+  #errors are sorted here
+  def self.process_response(sentence, user)
+    if sentence.asks_for_definition?
+      response = sentence.define_user_word
+    else
+      if sentence.corrections.any?
+        response = sentence.corrections[0].format_response
+      else
+        response = watson_says(sentence.content, user)
+        response = mention_trouble_word(user) if response.nil?
+      end
+    end
+    response
+  end
+
+
+end
+
   # def self.mention_trouble_words(user)
   #   words = user.get_formatted_trouble_words.uniq.sample(4)
   #   output = "Here are some words to review: "
@@ -85,8 +105,6 @@ class LanguageHelper
   #   output[0...-1] + "."
   # end
 
-
-end
 
   #control the logic of the reponse
   #make all the API calls
