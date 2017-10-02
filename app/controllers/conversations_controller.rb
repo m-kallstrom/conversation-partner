@@ -28,9 +28,10 @@ class ConversationsController < ApplicationController
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)
-    @final_response = LanguageHelper.process_response(@sentence, current_user)
 
+    @final_response = LanguageHelper.process_response(@sentence, current_user)
     @sentence.response = @final_response
+
     render :new
 
   end
