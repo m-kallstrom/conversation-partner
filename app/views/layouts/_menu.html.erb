@@ -1,10 +1,10 @@
+
 <nav class="navbarr ">
   <div class="container-fluid">
 
     <div class="">
       <span class="nav-open" style="font-size:30px;cursor:pointer">&#9776;</span>
     </div>
-
     <div id="navbar" class="sidenav">
       <a href="javascript:void(0)" class="nav-close">&times;</a>
     <% if current_user %>
@@ -13,6 +13,7 @@
        <%= link_to 'New Conversation!', reset_conversation_path %>
        <%= link_to "Logout", '/logout' %>
     <% else %>
+      <%= link_to 'Main', '/' %>
       <%= link_to 'Login', '/login' %>
       <%= link_to 'Register', '/users/new' %>
     <% end %>
@@ -21,3 +22,4 @@
 </nav>
 
 
+  <a href="javascript:void(0)" class="nav-close"><div id="left-side-close"></div></a>
