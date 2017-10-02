@@ -6,4 +6,6 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
+  # - psql -c 'create database travis_ci_test;' -U postgres
