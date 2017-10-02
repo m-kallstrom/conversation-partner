@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/login'  => 'sessions#create'
   get  '/logout' => 'sessions#destroy'
   get  '/about'  => 'project#about'
+  get  '/daily_word'  => 'trouble_words#daily_word'
 
   resources :trouble_words, only: [:index]
   resources :sentences, only: [:new, :create]

@@ -11,6 +11,7 @@
        <p> Hello, <%= current_user.username %>!</p>
        <%= link_to "profile", "/users/#{current_user.id}" %>
        <%= link_to 'New Conversation!', reset_conversation_path %>
+       <%= link_to 'Daily word', "/daily_word" %>
        <%= link_to "Logout", '/logout' %>
     <% else %>
       <%= link_to 'Main', '/' %>

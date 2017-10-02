@@ -1,9 +1,9 @@
 <div class="profile profile-conversation">
-  <ul>
-    <% @conversation.sentences.each do |sentense| %>
-      <li>You said:<%= sentence.content %></li>
+  <ul class="dialog-ul">
+    <% @conversation.sentences.each do |sentence| %>
+      <li class="t-left"><span class="dialog"> You said: </span><br> <%= sentence.content %></li>
       <br>
-      <li>Response: <%= sentence.response %></li>
+      <li class="t-right"><span class="dialog"> Response: </span><br> <%= sentence.response %></li>
     <% end %>
   </ul>
 </div>

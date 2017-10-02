@@ -31,6 +31,7 @@ class ConversationsController < ApplicationController
 
     @final_response = LanguageHelper.process_response(@sentence, current_user)
     @sentence.response = @final_response
+    @sentence.save
 
     render :new
 
