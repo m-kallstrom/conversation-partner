@@ -1,0 +1,23 @@
+<nav class="navbarr ">
+  <div class="container-fluid">
+
+    <div class="">
+      <span class="nav-open" style="font-size:30px;cursor:pointer">&#9776;</span>
+    </div>
+
+    <div id="navbar" class="sidenav">
+      <a href="javascript:void(0)" class="nav-close">&times;</a>
+    <% if current_user %>
+       <p> Hello, <%= current_user.username %>!</p>
+       <%= link_to "profile", "/users/#{current_user.id}" %>
+       <%= link_to 'New Conversation!', reset_conversation_path %>
+       <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %>
+      <%= link_to 'Register', '/users/new' %>
+    <% end %>
+    </div>
+  </div>
+</nav>
+
+
