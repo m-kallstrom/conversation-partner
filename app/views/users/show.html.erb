@@ -12,11 +12,14 @@
       <% end %>
     </div>
 
-    <p> See trouble words:</p>
-      <%= form_tag("/trouble_words", method: "get") do |form| %>
-        <%= select_tag(:id, options_for_select(@user.trouble_words.map{|word| [word.corrected_word, word.id] }), class: "form-control full-width limit-dropdown") %>
-        <%= submit_tag("view", class: "btn btn-warning input") %>
-      <% end %>
+<!--     <p> See trouble words:</p>
+ -->
+       <%= link_to "See trouble words", "/trouble_words" %>
+
+<!--       < %= form_tag("/trouble_words", method: "get") do |form| %>
+        < %= select_tag(:id, options_for_select(@user.trouble_words.map{|word| [word.corrected_word, word.id] }), class: "form-control full-width limit-dropdown") %>
+        < %= submit_tag("view", class: "btn btn-warning input") %>
+      < % end %> -->
   </div>
 </div>
 

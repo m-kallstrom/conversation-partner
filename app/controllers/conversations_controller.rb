@@ -38,6 +38,7 @@ class ConversationsController < ApplicationController
       end
     end
     @sentence.response = @final_response
+    @sentence.save
     render :new
 
   end
