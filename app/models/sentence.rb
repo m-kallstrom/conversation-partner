@@ -4,25 +4,13 @@ class Sentence < ApplicationRecord
   has_many :corrections
   has_many :trouble_words, through: :corrections
 
+  before_save :capitalize_content
 
 
-
-
-  # after_save :sort_errors
-
-  # def sort_errors
-  #   response = Switchboard.gingerice_response(self.content)
-  #   mistakes = response["corrections"]
-
-  #   if mistakes.any?
-  #     correction = Correction.create(corrected_sentence: response['result'], sentence: self)
-
-  #     mistakes.each do |mistake|
-  #       word = mistake['correct']
-  #       TroubleWord.create(corrected_word: word, correction: correction)
-  #     end
-  #   end
-  #   return true
-  # end
+  def capitalize_content
+    ary = content.split(" ")
+    ary[0] = ary[0].capitalize
+    self.content = ary.join(" ")
+  end
 
 end

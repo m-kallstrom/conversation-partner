@@ -26,12 +26,11 @@ class LanguageHelper
       mistakes.each do |mistake|
         allowed = ["i", "my"]
         word = mistake['correct'].split(" ").last
-        if !allowed.include?(word.downcase)
+        if !allowed.include?(word.downcase) && word.length >= 4
           TroubleWord.create(corrected_word: word.downcase, correction: correction)
         end
       end
     end
-    # return true
   end
 
   def self.get_nouns(text)
