@@ -11,8 +11,8 @@ class ConversationsController < ApplicationController
   def new
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
-  end 
-  
+  end
+
   # POST /conversations
   def create
     if current_conversation
@@ -37,7 +37,7 @@ class ConversationsController < ApplicationController
         @final_response = LanguageHelper.mention_trouble_word(current_user)
       end
     end
-
+    @sentence.response = @final_response
     render :new
 
   end
