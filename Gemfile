@@ -32,6 +32,7 @@ gem 'faraday'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # gem 'watson-api-client'
+gem 'rest-client'
 gem 'watson-conversation'
 gem 'redis'
 gem 'oxford_dictionary'
