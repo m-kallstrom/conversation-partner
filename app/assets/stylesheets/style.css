@@ -1,4 +1,5 @@
 body {
+  height: 100%
   font-family: 'Raleway', sans-serif;
 }
 
@@ -34,6 +35,7 @@ body {
 #auth {
   background: url("parrot.jpg") rgba(0,0,0,0.6);
   height: 100%;
+  top: 0;
   width: 100%;
   z-index: -10;
   position: fixed;
@@ -61,6 +63,8 @@ label {
 }
 
 .about {
+  z-index: 0;
+  height: 100%;
   background-color: white;
   opacity: .7;
   margin: 5%;
@@ -116,12 +120,73 @@ label {
 
 }
 
+/************ menu bar *************/
 
-/*    <%= form_tag("/conversations/history", method: "get") do |form| %>
-    Select one:  <%= collection_select_tag(:conversation, :conversation_id, @user.conversations, :id, :created_at) %>
-    <%= submit_tag("view", class: "btn btn-success input") %>
-    <!-- < % end %> -->
-    <% end %>*/
+.navbarr {
+  position: fixed;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  z-index: 1000;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav-open {
+  padding: 0 10px;
+  color: #999999;
+  float: right;
+}
+
+.nav-close {
+  font-size: 25px !important;
+  padding: 18px 8px 8px 18px !important;
+}
+
+#left-side-close {
+  display: block;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  float: left;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  background-color: #B0BEC5;
+  /*overflow-x: hidden;*/
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  float: right;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  background-color: #B0BEC5;
+  overflow-x: hidden;
+  transition: 0.3s;
+  opacity: 0.9;
+}
+
+.sidenav a, .sidenav p {
+  padding: 8px 8px 8px 18px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+  color: lightgray;
+}
+
+
+
+
 
 
 
