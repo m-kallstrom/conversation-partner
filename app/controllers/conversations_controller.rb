@@ -28,15 +28,8 @@ class ConversationsController < ApplicationController
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)
+    @final_response = LanguageHelper.process_response(@sentence, current_user)
 
-    if @sentence.corrections.any?
-      @final_response = @sentence.corrections[0].format_response
-    else
-      @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
-      if @final_response.nil?
-        @final_response = LanguageHelper.mention_trouble_word(current_user)
-      end
-    end
     @sentence.response = @final_response
     render :new
 
@@ -59,3 +52,13 @@ class ConversationsController < ApplicationController
   #     params.permit(:content, :user_id, :utf8, :authenticity_token, :commit)
   #   end
 end
+
+
+    # if @sentence.corrections.any?
+    #   @final_response = @sentence.corrections[0].format_response
+    # else
+    #   @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
+    #   if @final_response.nil?
+    #     @final_response = LanguageHelper.mention_trouble_word(current_user)
+    #   end
+    # end

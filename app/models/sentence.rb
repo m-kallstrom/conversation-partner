@@ -13,4 +13,9 @@ class Sentence < ApplicationRecord
     self.content = ary.join(" ")
   end
 
+  def what_is_test
+    content.split(" ")[0..1].join(" ").downcase == "what is"
+  end
+
+
 end
