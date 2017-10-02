@@ -8,9 +8,11 @@ class Sentence < ApplicationRecord
 
 
   def capitalize_content
-    ary = content.split(" ")
-    ary[0] = ary[0].capitalize
-    self.content = ary.join(" ")
+    if content.length > 0
+      ary = content.split(" ")
+      ary[0] = ary[0].capitalize
+      self.content = ary.join(" ")
+    end
   end
 
   def asks_for_definition?
