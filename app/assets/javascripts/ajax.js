@@ -27,8 +27,9 @@ sendInput = function(event) {
       var userInput = $form.find('textarea').val();
       $form.find('textarea').val("");
       var data = { sentence: {content: userInput} };
-      var output = "<li class='t-left'><span class='dialog'> you said: </span><br> " + userInput + "</li>"
+      var output = "<li class='t-left'><span class='dialog'> you said: </span><br></li>"
       $("#output-form").append(output);
+      $("#output-form .t-left:last").append(userInput)
 
 
       var $request = $.ajax({
