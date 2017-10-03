@@ -69,9 +69,9 @@ class LanguageHelper
   end
 
   def self.daily_word
-    word = Switchboard.scrape_daily_word
-    definition = get_primary_definition(word)
-    output = "Your daily word is '#{word}. It means '#{definition}'."
+    word_definition = Switchboard.scrape_daily_word
+    # definition = get_primary_definition(word)
+    output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
   end
 
   def self.get_primary_definition(word)
@@ -88,7 +88,7 @@ class LanguageHelper
       response = sentence.define_user_word
     else
       if sentence.corrections.any?
-        response = sentence.corrections[0].format_response
+        response = sentence.corrections[0].format_response + "\n" + watson_says(sentence.corrections[0].corrected_sentence, user)
       else
         response = watson_says(sentence.content, user)
         response = mention_trouble_word(user) if response.nil?
