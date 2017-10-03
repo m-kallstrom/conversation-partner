@@ -62,9 +62,9 @@ class LanguageHelper
     word = user.trouble_words.sample
     if word && word.definitions && word.definitions.any?
       definition = word.definitions.first
-      "Here is a word to review: #{word.corrected_word}. It means '#{definition}'."
+      "Try using this word in a sentence: #{word.corrected_word}. It means '#{definition}'."
     else
-      "Here is a word to review: #{word.corrected_word}."
+      "Try using this word in a sentence: #{word.corrected_word}."
     end
   end
 
@@ -72,6 +72,11 @@ class LanguageHelper
     word_definition = Switchboard.scrape_daily_word
     # definition = get_primary_definition(word)
     output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
+  end
+
+  def self.news_item
+    headline = Switchboard.scrape_news
+    "Here is something I read in the paper: '#{headline}'. What do you think?"
   end
 
   def self.get_primary_definition(word)
@@ -88,10 +93,18 @@ class LanguageHelper
       response = sentence.define_user_word
     else
       if sentence.corrections.any?
-        response = sentence.corrections[0].format_response + "\n" + watson_says(sentence.corrections[0].corrected_sentence, user)
+        g_response = sentence.corrections[0].format_response
+        w_response = watson_says(sentence.corrections[0].corrected_sentence, user)
+        response = "#{g_response} #{w_response}"
       else
         response = watson_says(sentence.content, user)
-        response = mention_trouble_word(user) if response.nil?
+        if response.nil? || response == "trouble_word"
+          response = mention_trouble_word(user)
+        elsif response == "news_item"
+          response = news_item
+        elsif response == "word_of_the_day"
+          response = daily_word
+        end
       end
     end
     response
