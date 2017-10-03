@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
+  let!(:user) { User.create!(username: "bob", email: "bob@bob.com", password: "123456") }
 
   describe "GET #new" do
     it "responds with status code 200" do
@@ -14,23 +15,17 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  #   describe "POST #create" do
-  #   it "responds with status code 302" do
-  #     post :create, {params:  {sentence: {content: "hi"}}}
-  #     expect(response).to have_http_status 200
-  #   end
+    describe "POST #create" do
+    it "responds with status code 302 for signing in user" do
+      post :create, {params:  {session: {email: "bob@bob.com", password: "123456"}}}
+      expect(response).to have_http_status 302
+    end
 
-  #   it "creates a new conversation in the database" do
-  #     before_count = Conversation.count
-  #     post :create, {params:  {sentence: {content: "hi"}}}
-  #     expect(Conversation.count).not_to eq(before_count)
-  #   end
-
-  #   it "assigns the newly created conversation as @conversation" do
-  #     post :create, {params:  {sentence: {content: "hi"}}}
-  #     expect(assigns(:conversation)).to eq(Conversation.last)
-  #   end
-  # end
+    it "creates a new session for signing in user" do
+      post :create, {params:  {session: {email: "bob@bob.com", password: "123456"}}}
+      expect(session[:user_id]).to eq(user.id)
+    end
+  end
 
   describe "GET #destroy" do
    it "responds with status code 302" do
