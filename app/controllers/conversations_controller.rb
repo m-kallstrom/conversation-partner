@@ -15,6 +15,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations
   def create
+
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
@@ -33,7 +34,18 @@ class ConversationsController < ApplicationController
     @sentence.response = @final_response
     @sentence.save
 
-    render :new
+    if request.xhr?
+      render partial: "partials/response", layout: false, locals: {sentence: @sentence }
+    else
+      render :new
+    end
+
+    # respond_to do |format|
+    #   format.html { render :new }
+    #   format.json { render }
+    # end
+
+    # render :new
 
   end
 

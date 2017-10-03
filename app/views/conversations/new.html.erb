@@ -1,17 +1,17 @@
 <div id="main-conv" class="form-group main-conv">
   <h1>Start a conversation!</h1>
    <div>
-    <ul class="dialog-ul TA">
+    <ul class="dialog-ul TA" id="output-form">
       <% @conversation.sentences.each do |sentence| %>
         <li class="t-left"><span class="dialog"> you said: </span><br> <%= sentence.content %></li>
         <li class="t-right"><span class="dialog"> response: </span><br> <%= sentence.response %></li>
       <% end %>
     </ul>
   </div>
-   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons" %>
-   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons" %>
+   <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons A" %>
+   <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons A" %>
 
-  <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}  do |f| %>
+  <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}, html: { id: "input-form" }, remote: true  do |f| %>
     <%= f.text_area :content, class: "form-control C"%>
     <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
   <% end %>
