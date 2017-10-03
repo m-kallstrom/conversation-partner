@@ -13,19 +13,30 @@ class LanguageHelper
   end
 
   def self.sort_errors(sentence)
-    response = Switchboard.gingerice_response(sentence.content)
-    mistakes = response["corrections"]
+    if !sentence.asks_for_definition?
+      response = Switchboard.gingerice_response(sentence.content)
+      mistakes = response["corrections"]
 
-    if mistakes.any?
-      correction = Correction.create(corrected_sentence: response['result'], sentence: sentence)
+      if mistakes.any?
+        correction = Correction.create(corrected_sentence: response['result'], sentence: sentence)
 
-      mistakes.each do |mistake|
-        allowed = ["i", "my"]
-        word = mistake['correct'].split(" ").last
-        if !allowed.include?(word.downcase) && word.length >= 4
-          TroubleWord.create(corrected_word: word.downcase, correction: correction)
+        mistakes.each do |mistake|
+          allowed = ["i", "my"]
+          word = LanguageHelper.strip_punctuation(mistake['correct'].split(" ").last)
+          if !allowed.include?(word.downcase) && word.length >= 4
+            TroubleWord.create(corrected_word: word.downcase, correction: correction)
+          end
         end
       end
+    end
+  end
+
+  def self.strip_punctuation(txt)
+    marks = [".", "?", "!"]
+    if marks.include?(txt[-1])
+      result = txt.scan(/.*(?=.)/).first
+    else
+      result = txt
     end
   end
 

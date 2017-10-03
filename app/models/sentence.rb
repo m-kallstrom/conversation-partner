@@ -22,7 +22,7 @@ class Sentence < ApplicationRecord
   def define_user_word
     ignore_words = ["a", "an", "the", "my", "his", "her"]
     words = []
-    strip_punctuation(content).split(" ")[2..3].each do |word|
+    LanguageHelper.strip_punctuation(content).split(" ")[2..3].each do |word|
       words << word unless ignore_words.include?(word)
     end
     word_to_define = words[0]
@@ -31,15 +31,6 @@ class Sentence < ApplicationRecord
       "#{word_to_define}: '#{definition}'."
     else
       "I can't find that word in my dictionary."
-    end
-  end
-
-  def strip_punctuation(txt)
-    marks = [".", "?", "!"]
-    if marks.include?(txt[-1])
-      result = txt.scan(/.*(?=.)/).first
-    else
-      result = txt
     end
   end
 
