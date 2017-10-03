@@ -15,7 +15,6 @@ class ConversationsController < ApplicationController
 
   # POST /conversations
   def create
-
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
@@ -39,14 +38,6 @@ class ConversationsController < ApplicationController
     else
       render :new
     end
-
-    # respond_to do |format|
-    #   format.html { render :new }
-    #   format.json { render }
-    # end
-
-    # render :new
-
   end
 
 
