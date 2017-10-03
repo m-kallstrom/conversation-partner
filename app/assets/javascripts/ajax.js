@@ -5,21 +5,31 @@
 
 
   $(document).ready(function() {
-    sendInput();
+    $(document).bind('keypress',pressed);
+    sendButton();
     $('.A').hide();
   });
 
-$(document).on('page:receive', function() {
-  $('[data-disable-with]:not([data-remote])').trigger('ajax:complete');
-});
+
+  function pressed(e) {
+    if(e.keyCode === 13) {
+        sendInput(e);
+    };
+  };
 
 
-sendInput = function() {
+sendButton = function() {
 
   $('#input-form').on('submit', function(event) {
-      event.preventDefault();
+      sendInput(event);
+  });
 
-      var $form = $(this);
+}
+
+sendInput = function(event) {
+  event.preventDefault();
+
+      var $form = $('#input-form');
       var userInput = $form.find('textarea').val();
       $form.find('textarea').val("");
       console.log(userInput);
@@ -42,10 +52,4 @@ sendInput = function() {
       $("#output-form").append(response);
 
     })
-
-
-  })
-
-
-
 }
