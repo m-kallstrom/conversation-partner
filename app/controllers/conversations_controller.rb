@@ -9,6 +9,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
+
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
   end
@@ -33,8 +34,11 @@ class ConversationsController < ApplicationController
     @sentence.response = @final_response
     @sentence.save
 
-    render :new
-
+    if request.xhr?
+      render partial: "partials/response", layout: false, locals: {sentence: @sentence }
+    else
+      render :new
+    end
   end
 
 
