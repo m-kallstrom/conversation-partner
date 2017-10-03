@@ -1,4 +1,5 @@
 require 'net/http'
+require 'rss'
 
 class Switchboard
 
@@ -32,6 +33,21 @@ class Switchboard
     definition = page.css(".midbt p").text
     ary = [word, definition]
   end
+
+  def self.scrape_news
+    url = "http://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+    times = RSS::Parser.parse(open(url))
+    items = []
+    headlines = []
+    times.channel.items.each do |item|
+      items << item
+    end
+    items.each do |item|
+      headlines << item.title
+    end
+    headlines.sample
+end
+
 
   def self.get_learners_word(word)
     key = ENV['MERRIAM_WEBSTER_API_KEY']
