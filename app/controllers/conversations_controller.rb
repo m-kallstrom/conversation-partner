@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
 
   def history
-    @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.find_by(id: params[:id])
     render :show
   end
 
