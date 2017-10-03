@@ -15,17 +15,29 @@ RSpec.describe UsersController, type: :controller do
      end
     end
 
-    describe "POST #create" do
-    it "responds with status code 302 for signing in user" do
-      post :create, {params:  {session: {email: "bob@bob.com", password: "123456"}}}
-      expect(response).to have_http_status 302
+    describe "GET #new" do
+      it "responds with status code 200" do
+        get :new
+        expect(response).to have_http_status 200
+      end
+
+      it "renders the :new template" do
+        get :new
+        expect(response).to render_template(:new)
+      end
     end
 
-    it "creates a new session for signing in user" do
-      post :create, {params:  {session: {email: "bob@bob.com", password: "123456"}}}
-      expect(session[:user_id]).to eq(user.id)
+    describe "POST #create" do
+      it "responds with status code 302 for signing in user" do
+        post :create, {params:  {user: {username: "bill", email: "bill@bill.com", password: "123456"}}}
+        expect(response).to have_http_status 302
+      end
+
+      it "creates a new session for regestring user" do
+        post :create, {params:  {user: {username: "will", email: "will@will.com", password: "123456"}}}
+        expect(assigns(:user).id).to eq(session[:user_id])
+      end
     end
-  end
 
      # {params:  {session: {email: "bob@bob.com", password: "123456"}}}
 
