@@ -10,7 +10,11 @@ class SentencesController < ApplicationController
     p params
     @conversation = Conversation.find_or_create_by(user_id: params[:user_id])
     session[:conversation_id] = @conversation.id
-    @sentence = Sentence.create(content: params[:content], user: current_user, conversation: @conversation)
+    # @sentence = Sentence.create(content: params[:content], user: current_user, conversation: @conversation)
+    @sentence = Sentence.create(sentence_params)
+    @sentence.user = current_user
+    @sentence.conversation = @conversation
+    @sentence.save
     @conversation.sentences << @sentence
     p "------------------"
     p @sentence
@@ -27,4 +31,8 @@ class SentencesController < ApplicationController
 
   end
 
+  #   private
+  # def sentence_params
+  #   params.require(:sentence).permit(:content)
+  # end
 end
