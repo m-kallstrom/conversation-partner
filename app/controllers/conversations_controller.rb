@@ -26,7 +26,10 @@ class ConversationsController < ApplicationController
       end
       session[:conversation_id] = @conversation.id
     end
-    @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
+    # @sentence = Sentence.create(content: sentence_params, user: current_user, conversation: @conversation)
+    @sentence = Sentence.create(sentence_params)
+    @sentence.user = current_user
+    @sentence.conversation = @conversation
 
     LanguageHelper.sort_errors(@sentence)
 
@@ -47,7 +50,11 @@ class ConversationsController < ApplicationController
     redirect_to new_conversation_path
   end
 
-  # private
+  private
+    def sentence_params
+      params.require(:sentence).permit(:content)
+    end
+
   #   # Use callbacks to share common setup or constraints between actions.
   #   def set_conversation
   #     @conversation = Conversation.find(params[:id])
