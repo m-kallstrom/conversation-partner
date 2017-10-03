@@ -76,7 +76,7 @@ class LanguageHelper
 
   def self.news_item
     headline = Switchboard.scrape_news
-    "Here is something I read in the paper: #{headline}. What do you think?"
+    "Here is something I read in the paper: '#{headline}'. What do you think?"
   end
 
   def self.get_primary_definition(word)
