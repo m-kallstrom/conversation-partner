@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
       end
       session[:conversation_id] = @conversation.id
     end
-    # @sentence = Sentence.create(content: sentence_params, user: current_user, conversation: @conversation)
+
     @sentence = Sentence.create(sentence_params)
     @sentence.user = current_user
     @sentence.conversation = @conversation
@@ -55,23 +55,4 @@ class ConversationsController < ApplicationController
       params.require(:sentence).permit(:content)
     end
 
-  #   # Use callbacks to share common setup or constraints between actions.
-  #   def set_conversation
-  #     @conversation = Conversation.find(params[:id])
-  #   end
-
-  #   # Never trust parameters from the scary internet, only allow the white list through.
-  #   def conversation_params
-  #     params.permit(:content, :user_id, :utf8, :authenticity_token, :commit)
-  #   end
 end
-
-
-    # if @sentence.corrections.any?
-    #   @final_response = @sentence.corrections[0].format_response
-    # else
-    #   @final_response = LanguageHelper.watson_says(@sentence.content, current_user)
-    #   if @final_response.nil?
-    #     @final_response = LanguageHelper.mention_trouble_word(current_user)
-    #   end
-    # end

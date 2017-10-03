@@ -70,7 +70,6 @@ class LanguageHelper
 
   def self.daily_word
     word_definition = Switchboard.scrape_daily_word
-    # definition = get_primary_definition(word)
     output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
   end
 
@@ -110,26 +109,4 @@ class LanguageHelper
     response
   end
 
-
 end
-
-  # def self.mention_trouble_words(user)
-  #   words = user.get_formatted_trouble_words.uniq.sample(4)
-  #   output = "Here are some words to review: "
-  #   words.each do |word|
-  #   output += "#{word}, "
-  #   end
-  #   output[0...-1] + "."
-  # end
-
-
-  #control the logic of the reponse
-  #make all the API calls
-  #Watson
-  #Gingerice
-  #get input from the user
-    #send that input to Ginger Ice
-    #get back and save Ginger Ice response
-
-    #send Watson call
-    #get back and save Watson response
