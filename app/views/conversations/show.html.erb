@@ -3,7 +3,7 @@
     <% @conversation.sentences.each do |sentence| %>
       <li class="t-left"><span class="dialog"> You said: </span><br> <%= sentence.content %></li>
       <br>
-      <li class="t-right"><span class="dialog"> Response: </span><br> <%= sentence.response %></li>
+      <li class="t-right"><span class="dialog"> Response: </span><br> <%= sentence.response %><input onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='🔊 Hear me say this' /></li>
     <% end %>
   </ul>
 </div>
