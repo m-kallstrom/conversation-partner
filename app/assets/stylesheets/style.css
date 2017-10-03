@@ -212,6 +212,18 @@ label {
   border-radius: 10px;
 }
 
+/*************************************/
+
+.error * {
+  /*line-height: 40px;*/
+  padding: 3px;
+  color: red;
+  background-color: white;
+  opacity: .8;
+  list-style: none;
+  padding-left: 0;
+  border-radius: 5px;
+}
 
 
 
