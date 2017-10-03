@@ -88,7 +88,7 @@ class LanguageHelper
       response = sentence.define_user_word
     else
       if sentence.corrections.any?
-        response = sentence.corrections[0].format_response
+        response = sentence.corrections[0].format_response + "\n" + watson_says(sentence.corrections[0].corrected_sentence, user)
       else
         response = watson_says(sentence.content, user)
         response = mention_trouble_word(user) if response.nil?
