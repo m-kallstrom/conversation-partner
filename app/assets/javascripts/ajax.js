@@ -1,7 +1,4 @@
 
-
-// window.scrollTo(0,document.body.scrollHeight);
-
   $(document).ready(function() {
     $(document).bind('keypress',pressed);
     sendButton();
@@ -14,7 +11,6 @@
         sendInput(e);
     };
   };
-
 
 sendButton = function() {
   $('#input-form').on('submit', function(event) {
