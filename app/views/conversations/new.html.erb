@@ -12,15 +12,43 @@
    <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons A" %>
 
   <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}, html: { id: "input-form" }, remote: true  do |f| %>
-    <%= f.text_area :content, class: "form-control C"%>
+    <%= f.text_area :content, class: "form-control C", id: "input-textbox" %>
     <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
   <% end %>
 
+<script>
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'en-US';
+recognition.interimResults = true;
+recognition.maxAlternatives = 3;
 
-<!--     <div class="form-control TA">
-      < % if @final_response %>
-        < %= @final_response %>
-      < % end %>
-   </div>
- -->
-</div>
+var output = document.getElementById('input-textbox');
+recognition.onresult = function(event) {
+  console.log('onresult', event, output)
+  output.textContent = event.results[0][0].transcript;
+  $("#input-textbox").val(event.results[0][0].transcript)
+};
+
+//when starting change icon
+recognition.onaudiostart = function() {
+  console.log('Audio capturing started');
+}
+
+//for ending change icon
+recognition.onaudioend = function() {
+  console.log('Audio capturing ended');
+}
+
+recognition.onspeechstart = function() {
+  console.log('Speech has been detected');
+}
+recognition.onspeechend = function() {
+  console.log('Speech has stopped being detected');
+}
+
+
+</script>
+
+<button onclick="recognition.start()">Start</button>
+<button onclick="recognition.stop()">Stop</button>

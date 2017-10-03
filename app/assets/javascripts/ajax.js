@@ -1,9 +1,11 @@
 
   $(document).ready(function() {
     $(document).bind('keypress',pressed);
+    console.log('doc ready')
   });
 
   $(document).on('turbolinks:load', function(){
+    console.log('tl load')
     sendButton();
     $('.A').hide();
   });
@@ -44,3 +46,42 @@ sendInput = function(event) {
 
     })
 }
+
+$("#start").on("click", function(){
+  recognition.start()
+  //add listening microphone gif
+})
+
+$("#stop").on("click", function(){
+  recognition.stop()
+  //back to microphone icon
+})
+
+
+// var recognition = new webkitSpeechRecognition();
+// recognition.continuous = true;
+// recognition.lang = 'en-US';
+// recognition.interimResults = true;
+// recognition.maxAlternatives = 3;
+
+// var output = document.getElementById('input-textbox');
+// recognition.onresult = function(event) {
+//   output.textContent = event.results[0][0].transcript;
+// };
+
+// //when starting change icon
+// recognition.onaudiostart = function() {
+//   console.log('Audio capturing started');
+// }
+
+// //for ending change icon
+// recognition.onaudioend = function() {
+//   console.log('Audio capturing ended');
+// }
+
+// recognition.onspeechstart = function() {
+//   console.log('Speech has been detected');
+// }
+// recognition.onspeechend = function() {
+//   console.log('Speech has stopped being detected');
+// }
