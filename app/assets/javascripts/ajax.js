@@ -1,11 +1,17 @@
   // $(document).on('turbolinks:load', function(){
   //   sendInput();
+  //   $('.A').hide();
   // });
 
 
   $(document).ready(function() {
     sendInput();
+    $('.A').hide();
   });
+
+$(document).on('page:receive', function() {
+  $('[data-disable-with]:not([data-remote])').trigger('ajax:complete');
+});
 
 
 sendInput = function() {
@@ -15,6 +21,7 @@ sendInput = function() {
 
       var $form = $(this);
       var userInput = $form.find('textarea').val();
+      $form.find('textarea').val("");
       console.log(userInput);
       var data = $form.serialize();
       console.log(data);
