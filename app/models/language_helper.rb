@@ -69,9 +69,9 @@ class LanguageHelper
   end
 
   def self.daily_word
-    word = Switchboard.scrape_daily_word
-    definition = get_primary_definition(word)
-    output = "Your daily word is '#{word}. It means '#{definition}'."
+    word_definition = Switchboard.scrape_daily_word
+    # definition = get_primary_definition(word)
+    output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
   end
 
   def self.get_primary_definition(word)

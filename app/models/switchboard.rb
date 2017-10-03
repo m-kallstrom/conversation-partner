@@ -29,6 +29,8 @@ class Switchboard
     page = Nokogiri::HTML(open("http://www.learnersdictionary.com/word-of-the-day/"))
     word = page.css('.hw_txt').text
     word = word[0..( word.length/2 - 1)]
+    definition = page.css(".midbt p").text
+    ary = [word, definition]
   end
 
   def self.get_learners_word(word)
