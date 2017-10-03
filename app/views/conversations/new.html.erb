@@ -3,8 +3,8 @@
    <div>
     <ul class="dialog-ul TA" id="output-form">
       <% @conversation.sentences.each do |sentence| %>
-        <li class="t-left"><span class="dialog"> you said: </span><br> <%= sentence.content %></li>
-        <li class="t-right"><span class="dialog"> response: </span><br> <%= sentence.response %></li>
+        <li class="t-left"><span class="dialog">you said: </span><br> <span class="u-input"> <%= sentence.content %></span></li>
+        <li class="t-right"><span class="dialog">response: </span><br> <span class="w-input"> <%= sentence.response %></span></li>
       <% end %>
     </ul>
   </div>
