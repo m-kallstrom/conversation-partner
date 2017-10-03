@@ -9,6 +9,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
+
     @sentence = Sentence.new
     current_conversation ||= @conversation = Conversation.new
   end

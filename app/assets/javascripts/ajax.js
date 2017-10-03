@@ -1,10 +1,12 @@
 
   $(document).ready(function() {
     $(document).bind('keypress',pressed);
+  });
+
+  $(document).on('turbolinks:load', function(){
     sendButton();
     $('.A').hide();
   });
-
 
   function pressed(e) {
     if(e.keyCode === 13) {
