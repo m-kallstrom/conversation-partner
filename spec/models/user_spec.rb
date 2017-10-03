@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.create(username: "DarthBob", email: "darthbob@bob.com", password: "bob")}
-  let(:conversation) {Conversation.create(user: user)}
+  let(:user) {User.create(username: "DarthBob", email: "darthbob@bob.com", password: "darthbob")}
+  let(:conversation) {Conversation.create(user_id: user.id)}
 
   it "has a username" do
     expect(user.username).to eq("DarthBob")

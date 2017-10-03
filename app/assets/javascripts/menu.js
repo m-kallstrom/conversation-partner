@@ -16,21 +16,21 @@
       })
   }
 
-function updateScroll(){
-    var element = document.getElementById("main-conv");
-    element.scrollTop = element.scrollHeight;
-}
+// function updateScroll(){
+//     var element = document.getElementById("main-conv");
+//     element.scrollTop = element.scrollHeight;
+// }
 
   $(document).on('turbolinks:load', function(){
       open();
       close();
-      updateScroll();
+      // updateScroll();
   });
 
   $(document).ready(function() {
       open();
       close();
-      updateScroll();
+      // updateScroll();
   });
 
 

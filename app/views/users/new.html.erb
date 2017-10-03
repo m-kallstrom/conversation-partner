@@ -1,12 +1,18 @@
 <div class="fix-width landing">
     <%= form_for :user, url: '/users' do |f| %>
       <%= f.label :username %><br>
-      <%= f.text_field :username, class: "full-width form-control input", placeholder: 'Username', required: true  %><br>
-        <%= f.email_field :email, class: "full-width form-control hidden input", placeholder: 'Email', required: true %>
+      <%= f.text_field :username, class: "full-width form-control input", id:"validationDefault01", placeholder: 'Username', required: true %>
+      <br>
+        <%= f.email_field :email, class: "full-width form-control hidden input",id: "validationDefault02", placeholder: 'Email', required: true %>
 
       <%= f.label :password %><br>
-      <%= f.password_field :password, class: "full-width form-control input", placeholder: 'Password', required: true %><br>
-
+      <%= f.password_field :password, class: "full-width form-control input",id: "validationDefault03", placeholder: 'Password', required: true %>
+      <br>
+      <div class="error">
+        <% if @errors %>
+          <%= render 'partials/errors' %>
+        <% end %>
+      </div>
       <%= f.submit 'Sign Up', id: "signup-button", class: "form_submit_button btn btn-info full-width C input"%>
     <% end %>
     <br>

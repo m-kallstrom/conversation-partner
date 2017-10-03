@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @user = User.new
     render layout: "auth"
   end
 
@@ -19,8 +20,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-    # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+      @errors = ['Either your username or password was incorrect.']
+      # If user's login doesn't work, send them back to the login form.
+      render "new", layout: "auth"
     end
   end
 
