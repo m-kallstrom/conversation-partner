@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'coveralls', require: false
   gem 'capybara'
+  gem 'rails-controller-testing'
 end
 
 group :development do
