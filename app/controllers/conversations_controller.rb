@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations
   def create
-
+    p params
     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
@@ -26,6 +26,7 @@ class ConversationsController < ApplicationController
       end
       session[:conversation_id] = @conversation.id
     end
+    p params[:sentence][:content]
     @sentence = Sentence.create(content: params[:sentence][:content], user: current_user, conversation: @conversation)
 
     LanguageHelper.sort_errors(@sentence)

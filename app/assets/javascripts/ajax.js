@@ -28,7 +28,7 @@ sendInput = function(event) {
       var $form = $('#input-form');
       var userInput = $form.find('textarea').val();
       $form.find('textarea').val("");
-      var data = $form.serialize();
+      var data = { sentence: {content: userInput} };
       var output = "<li class='t-left'><span class='dialog'> you said: </span><br> " + userInput + "</li>"
       $("#output-form").append(output);
 
@@ -41,6 +41,7 @@ sendInput = function(event) {
 
     $request.done(function(response) {
       $("#output-form").append(response);
+      $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
 
     })
 }
