@@ -5,7 +5,7 @@
   });
 
   $(document).on('turbolinks:load', function(){
-    console.log('tl load')
+    // console.log('tl load')
     sendButton();
     $('.A').hide();
   });
@@ -32,6 +32,7 @@ sendInput = function(event) {
       var output = "<li class='t-left'><span class='dialog'>you said: </span><br><span class='u-input'></span></li>"
       $("#output-form").append(output);
       $("#output-form .u-input:last").text(userInput);
+      $("#start-conv").hide();
 
 
       var $request = $.ajax({
