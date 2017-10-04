@@ -2,12 +2,6 @@ require 'watson/conversation'
 
 class LanguageHelper
 
-  def self.craft_response(sentence, user)
-    gingerice = Switchboard.gingerice_response(sentence)
-    watson = Switchboard.watson_response(sentence, user)
-    "Gingerice: #{gingerice['result']} ||| Watson: #{watson}"
-  end
-
   def self.watson_says(input, user)
     watson = Switchboard.watson_response(input, user)
   end
@@ -22,8 +16,9 @@ class LanguageHelper
 
         mistakes.each do |mistake|
           allowed = ["i", "my"]
+
           word = LanguageHelper.strip_punctuation(mistake['correct'].split(" ").last)
-          if !allowed.include?(word.downcase) && word.length >= 4
+          if !allowed.include?(word.downcase) && word.length >= 4 && mistake['text'].capitalize != mistake['correct']
             TroubleWord.create(corrected_word: word.downcase, correction: correction)
           end
         end
@@ -47,31 +42,24 @@ class LanguageHelper
     nouns = tgr.get_nouns(tagged).keys
   end
 
-  def self.get_word_of_the_day(user)
-    if user.trouble_words.empty?
-      "No trouble words designated."
-    else
-      word = user.trouble_words.sample
-      definition = word.definitions.first
-      "Your word of the day is #{word.corrected_word}. The definition is '#{definition}'."
-    end
-  end
-
   def self.mention_trouble_word(user)
-    return "Sign up for more information!" if user.nil?
+    return "Sign up to see all your conversations!" if user.nil?
     word = user.trouble_words.sample
     if word && word.definitions && word.definitions.any?
       definition = word.definitions.first
       "Try using this word in a sentence: #{word.corrected_word}. It means '#{definition}'."
     else
+      return "JOKE ROUTE" if word.nil?
       "Try using this word in a sentence: #{word.corrected_word}."
     end
   end
 
   def self.daily_word
     word_definition = Switchboard.scrape_daily_word
-    # definition = get_primary_definition(word)
-    output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
+    word = word_definition[0]
+    definition = word_definition[1]
+    NewWord.create(word: word, definition: definition)
+    output = "Your daily word is '#{word} #{definition}'."
   end
 
   def self.news_item
@@ -110,26 +98,4 @@ class LanguageHelper
     response
   end
 
-
 end
-
-  # def self.mention_trouble_words(user)
-  #   words = user.get_formatted_trouble_words.uniq.sample(4)
-  #   output = "Here are some words to review: "
-  #   words.each do |word|
-  #   output += "#{word}, "
-  #   end
-  #   output[0...-1] + "."
-  # end
-
-
-  #control the logic of the reponse
-  #make all the API calls
-  #Watson
-  #Gingerice
-  #get input from the user
-    #send that input to Ginger Ice
-    #get back and save Ginger Ice response
-
-    #send Watson call
-    #get back and save Watson response

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_conversation
-    @current_conversation ||=Conversation.find(session[:conversation_id]) if session[:conversation_id]
+    @current_conversation ||= Conversation.find_by(id: session[:conversation_id]) if session[:conversation_id]
   end
 
   helper_method :current_conversation

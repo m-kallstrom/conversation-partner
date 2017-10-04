@@ -25,21 +25,24 @@ RSpec.describe ConversationsController, type: :controller do
       get :new
       expect(response).to render_template(:new)
     end
+
+    it "creates a new conversation in the database" do
+      before_count = Conversation.count
+      get:new
+      expect(Conversation.count).not_to eq(before_count)
+    end
   end
 
   describe "POST #create" do
     it "responds with status code 200" do
+      session[:conversation_id] = conversation.id
       post :create, {params:  {sentence: {content: "hi"}}}
       expect(response).to have_http_status 200
     end
 
-    it "creates a new conversation in the database" do
-      before_count = Conversation.count
-      post :create, {params:  {sentence: {content: "hi"}}}
-      expect(Conversation.count).not_to eq(before_count)
-    end
 
     it "assigns the newly created conversation as @conversation" do
+      session[:conversation_id] = conversation.id
       post :create, {params:  {sentence: {content: "hi"}}}
       expect(assigns(:conversation)).to eq(Conversation.last)
     end

@@ -20,11 +20,11 @@ class Switchboard
     results = DictionaryLookup::Base.define(word)
   end
 
-  def self.oxford_dictionary_response(word)
-    client = call_dictionary
-    entry = client.entry[word]
-    entry.lexical_entries.entries.senses
-  end
+  # def self.oxford_dictionary_response(word)
+  #   client = call_oxford_dictionary
+  #   entry = client.entry[word]
+  #   entry.lexical_entries.entries.senses
+  # end
 
   def self.scrape_daily_word
     page = Nokogiri::HTML(open("http://www.learnersdictionary.com/word-of-the-day/"))
@@ -46,13 +46,23 @@ class Switchboard
       headlines << item.title
     end
     headlines.sample
-end
+  end
 
 
   def self.get_learners_word(word)
     key = ENV['MERRIAM_WEBSTER_API_KEY']
     uri = URI("http://www.dictionaryapi.com/api/v1/references/learners/xml/#{word}?key=#{key}")
     Net::HTTP.get(uri)
+  end
+
+  def self.watson_init(user)
+    if user.nil?
+      user_name = "test"
+    else
+      user_name ="user#{user.id}"
+    end
+    watson = load_watson
+    watson.talk(user_name, "")
   end
 
 private
@@ -69,17 +79,15 @@ private
       user_name ="user#{user.id}"
     end
     watson = load_watson
-    init_response = watson.talk(user_name, "Hi")
-    response = watson.talk(user_name, sentence)
+
+    p sentence
+    p "----------------------------------"
+    p response = watson.talk(user_name, sentence)
   end
 
-  def self.call_oxford_dictionary
-    client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-    client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-  end
-
-
-#Add dictionary API call
-#Add top new API call
+  # def self.call_oxford_dictionary
+  #   client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
+  #   client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
+  # end
 
 end
