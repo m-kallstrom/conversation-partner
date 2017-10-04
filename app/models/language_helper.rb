@@ -56,7 +56,10 @@ class LanguageHelper
 
   def self.daily_word
     word_definition = Switchboard.scrape_daily_word
-    output = "Your daily word is '#{word_definition[0]} #{word_definition[1]}'."
+    word = word_definition[0]
+    definition = word_definition[1]
+    NewWord.create(word: word, definition: definition)
+    output = "Your daily word is '#{word} #{definition}'."
   end
 
   def self.news_item
