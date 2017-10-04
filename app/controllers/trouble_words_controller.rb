@@ -6,7 +6,7 @@ class TroubleWordsController < ApplicationController
   end
 
   def index
-    @trouble_words = TroubleWord.all
+    @trouble_words = current_user.trouble_words
   end
 
 end
