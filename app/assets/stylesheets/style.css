@@ -1,6 +1,8 @@
 body {
   height: 100%;
   font-family: 'Raleway', sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
   div.fix-width {
@@ -95,7 +97,7 @@ label {
 
 .main-conv {
   height: 100%;
-  margin: 3%;
+  margin: 1%;
   text-align: center;
   /*margin: 50px;*/
 }
@@ -104,7 +106,7 @@ label {
 }
 
 .TA {
-  min-height: 100px;
+  min-height: 50px;
   height:auto;
 /*background color in response textarea */
   /*background-color: #FFD180;*/
@@ -193,11 +195,14 @@ label {
 .t-left {
   text-align: left;
   color: yellow;
+  clear: right;
 }
 
 .t-right {
   text-align: right;
-
+  float: right;
+  clear: left;
+  /*right: 0;*/
 }
 
 .dialog {
@@ -209,20 +214,50 @@ label {
   height: auto;
   list-style: none;
   padding-left: 0;
-  padding: 5px;
+  padding: 3px;
   border-radius: 10px;
+  width: 100%;
+}
+
+.li-item {
+  width: 100%;
+}
+
+.w-input {
+  float: right;
+}
+
+.u-input {
+  float: left;
+  min-height: 32px;
+  min-width: 32px;
 }
 
 .u-input, .w-input {
+  max-width: 80%;
+  width: auto;
   color: #005035;
   border: 0.1em ridge #FF063B;
   border-width: thin;
-  word-wrap: break-word;
+  word-wrap: normal;
   border-radius: 7px;
   padding: 3px 6px;
-  max-width: 75%;
+  /*max-width: 50%;*/
+  margin: 3px;
 }
 
+.you {
+  margin-left: 5px;
+}
+
+#In-form {
+  padding-top: 10px;
+  clear: both;
+}
+
+.three-buttons {
+  display: inline;
+}
 
 /*************************************/
 
