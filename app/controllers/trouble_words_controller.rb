@@ -6,7 +6,7 @@ class TroubleWordsController < ApplicationController
   end
 
   def index
-    @trouble_words = current_user.trouble_words
+    @trouble_words = current_user.trouble_words.order(created_at: :desc).limit(10)
   end
 
 end
