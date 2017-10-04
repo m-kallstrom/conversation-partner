@@ -1,8 +1,12 @@
-<div class="profile profile-conversation">
+<div class="trouble-words">
   <ul>
     <% @trouble_words.each do |word| %>
       <li><%= word.corrected_word %></li>
     <% end %>
   </ul>
 </div>
+
+
+<div class="back-to-profile">
   <%= link_to "back to profile", "/users/#{current_user.id}" %>
+</div>

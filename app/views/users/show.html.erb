@@ -1,5 +1,6 @@
-<div class="profile">
+<div class="pro-header">
   <h3>Profile</h3>
+<div class="profile">
   <div>
     <p> Username: <%= @user.username %></p>
     <p> Email: <%= @user.email %></p>
@@ -8,13 +9,13 @@
     <div>
       <%= form_tag("/conversations/history", method: "get") do |form| %>
         <%= select_tag(:id, options_for_select(@user.conversations.map{|convo| [convo.created_at, convo.id] }), class: "form-control full-width limit-dropdown") %>
-        <%= submit_tag("view", class: "btn btn-warning input") %>
+        <%= submit_tag("view", class: "btn btn-info input M10px") %>
       <% end %>
     </div>
 
 <!--     <p> See trouble words:</p>
  -->
-       <%= link_to "See trouble words", "/trouble_words" %>
+       <%= link_to "See trouble words", "/trouble_words", class: "btn btn-danger" %>
 
 <!--       < %= form_tag("/trouble_words", method: "get") do |form| %>
         < %= select_tag(:id, options_for_select(@user.trouble_words.map{|word| [word.corrected_word, word.id] }), class: "form-control full-width limit-dropdown") %>
@@ -22,4 +23,4 @@
       < % end %> -->
   </div>
 </div>
-
+</div>

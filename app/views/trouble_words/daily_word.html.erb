@@ -1,3 +1,9 @@
-<div class="profile">
-  <%= @word_and_definition %>
+<div class="daily-word">
+  <p>Your daily word is:</p>
+  <span id="d-word"><%= @word_and_definition[0] %> </span> <br>
+  <p id="d-def"><%= @word_and_definition[1] %></p>
+</div>
+
+<div class="back-to-profile">
+  <%= link_to "go to profile", "/users/#{current_user.id}" %>
 </div>

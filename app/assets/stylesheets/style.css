@@ -116,12 +116,54 @@ label {
 /******** profile ***********/
 
 .profile {
-  margin: 5px;
-  background-color: #CFD8DC;
-  padding: 5px;
-  border-radius: 10px;
+  color: #005035;
+  border: 0.1em ridge #FF063B;
+  border-width: thin;
+  word-wrap: normal;
+  border-radius: 7px;
+  padding: 8px;
+
 }
 
+.pro-header {
+  height: 100%;
+  max-width: 90%;
+  padding: 3px 6px;
+  vertical-align: center;
+  margin: 0 auto;
+  margin-top: 30%;
+  text-align: center;
+}
+
+.M10px {
+  margin: 15px;
+}
+
+/***************** trouble-words ********************/
+
+.trouble-words {
+  column-count: 2;
+  color: #005035;
+  border: 0.1em ridge #FF063B;
+  border-width: thin;
+  word-wrap: normal;
+  border-radius: 7px;
+  padding: 8px;
+  height: 100%;
+  max-width: 90%;
+  padding: 3px 6px;
+  vertical-align: center;
+  margin: 0 auto;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.trouble-words * {
+  list-style: none;
+  padding-left: 0;
+}
+
+/************************************/
 .profile-conversation {
 
 }
@@ -129,6 +171,7 @@ label {
 /************ menu bar *************/
 
 .navbarr {
+  max-width: 600px;
   position: fixed;
   width: 100%;
   -webkit-backface-visibility: hidden;
@@ -259,6 +302,43 @@ label {
   display: inline;
 }
 
+/*abbr {
+  text-decoration: none;
+}*/
+
+/*************************************/
+
+.daily-word {
+  height: 100%;
+  max-width: 80%;
+  color: #005035;
+  border: 0.1em ridge #FF063B;
+  border-width: thin;
+  word-wrap: normal;
+  border-radius: 7px;
+  padding: 3px 6px;
+  vertical-align: center;
+  margin: 0 auto;
+  margin-top: 35%;
+  text-align: center;
+}
+
+.back-to-profile {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#d-word {
+  font-size: 1.8em;
+  /*font-weight: bold;*/
+}
+#d-def {
+  margin-top: 25px;
+  font-style: italic;
+  font-size: 1.3em;
+}
 /*************************************/
 
 .error * {
