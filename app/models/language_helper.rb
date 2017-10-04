@@ -108,6 +108,8 @@ class LanguageHelper
           response = ExtraContent.tongue_twister
         elsif response == "joke"
           response = ExtraContent.joke
+        elsif response == "phrase"
+          response = ExtraContent.english_phrase
         end
       end
     end
