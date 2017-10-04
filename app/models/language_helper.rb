@@ -86,19 +86,6 @@ class LanguageHelper
         response = "#{g_response} #{w_response}"
       else
         response = watson_says(sentence.content, user)
-        if response.nil? || response == "trouble_word"
-          response = mention_trouble_word(user)
-        elsif response == "news_item"
-          response = news_item
-        elsif response == "word_of_the_day"
-          response = daily_word
-        elsif response == "tongue_twister"
-          response = ExtraContent.tongue_twister
-        elsif response == "joke"
-          response = ExtraContent.joke
-        elsif response == "phrase"
-          response = ExtraContent.english_phrase
-        end
       end
     end
     response
