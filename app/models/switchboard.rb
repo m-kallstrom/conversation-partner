@@ -13,7 +13,7 @@ class Switchboard
   # returns hash
   def self.gingerice_response(sentence)
     parser = Gingerice::Parser.new
-    p parser.parse sentence
+    parser.parse sentence
   end
 
   def self.get_definition(word)
@@ -55,6 +55,16 @@ end
     Net::HTTP.get(uri)
   end
 
+  def self.watson_init(user)
+    if user.nil?
+      user_name = "test"
+    else
+      user_name ="user#{user.id}"
+    end
+    watson = load_watson
+    watson.talk(user_name, "")
+  end
+
 private
 
   def self.load_watson
@@ -69,7 +79,8 @@ private
       user_name ="user#{user.id}"
     end
     watson = load_watson
-    init_response = watson.talk(user_name, "")
+
+    p sentence
     p "----------------------------------"
     p response = watson.talk(user_name, sentence)
   end
