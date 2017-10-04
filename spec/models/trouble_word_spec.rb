@@ -14,4 +14,10 @@ RSpec.describe TroubleWord, type: :model do
     expect(trouble_word.correction).to eq(correction)
   end
 
+  describe "definitions" do
+    it "returns Array" do
+      expect(trouble_word.definitions).to be_a_kind_of(Array)
+    end
+  end
+
 end

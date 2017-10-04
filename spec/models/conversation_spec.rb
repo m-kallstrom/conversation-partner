@@ -28,4 +28,9 @@ RSpec.describe Conversation, type: :model do
       expect(conversation.new_words).to include(new_word)
     end
 
+  describe "format_response" do
+    it "returns string" do
+      expect(correction.format_response).to be_a_kind_of(String)
+    end
+  end
 end

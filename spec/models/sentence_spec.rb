@@ -15,4 +15,10 @@ RSpec.describe Sentence, type: :model do
   it "has the response as well" do
     expect(sentence.response).to eq("Oh, you went to the store?")
   end
+
+  describe "define_user_word" do
+    it "returns string" do
+      expect(sentence.define_user_word).to be_a_kind_of(String)
+    end
+  end
 end
