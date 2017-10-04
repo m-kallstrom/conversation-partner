@@ -8,8 +8,8 @@ class LanguageHelper
 
   def self.sort_errors(sentence)
     if !sentence.asks_for_definition?
-      response = Switchboard.gingerice_response(sentence.content)
-      mistakes = response["corrections"]
+      response = Switchboard.gingerice_response(sentence.capitalize_content)
+      p mistakes = response["corrections"]
 
       if mistakes.any?
         correction = Correction.create(corrected_sentence: response['result'], sentence: sentence)
