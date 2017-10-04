@@ -7,7 +7,21 @@ class Switchboard
   def self.watson_response(sentence, user)
     response = call_watson(sentence, user)
     json = JSON.parse(response)
-    json['output'][0]
+    response = json['output'][0]
+    if response.nil? || response == "trouble_word"
+      response = LanguageHelper.mention_trouble_word(user)
+    elsif response == "news_item"
+      response = LanguageHelper.news_item
+    elsif response == "word_of_the_day"
+      response = LanguageHelper.daily_word
+    elsif response == "tongue_twister"
+      response = ExtraContent.tongue_twister
+    elsif response == "joke"
+      response = ExtraContent.joke
+    elsif response == "phrase"
+      response = ExtraContent.english_phrase
+    end
+    response
   end
 
   # returns hash
