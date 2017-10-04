@@ -1,54 +1,27 @@
 <div id="main-conv" class="form-group main-conv">
-  <h1>Start a conversation!</h1>
-   <div>
+  <h1 id="start-conv">Start a conversation!</h1>
+   <div class="">
     <ul class="dialog-ul TA" id="output-form">
       <% @conversation.sentences.each do |sentence| %>
-        <li class="t-left"><span class="dialog">you said: </span><br> <span class="u-input"> <%= sentence.content %></span></li>
-        <li class="t-right"><span class="dialog">response: </span><br> <span class="w-input"> <%= sentence.response %></span></li>
+
+        <li class="t-left"><span class="li-item"><span class="dialog you">you said: </span><br> <div class="u-input"> <%= sentence.content %></div></span></li>
+
+        <li class="t-right"><span class="dialog"></span><input class="dialog" onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='response: 🔊' /> <br> <div class="w-input"> <%= sentence.response %></div></li>
       <% end %>
     </ul>
   </div>
+<div>
    <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons A" %>
    <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons A" %>
+</div>
+    <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}, html: { id: "input-form" }, remote: true  do |f| %>
+  <div id="In-form">
+      <%= f.text_area :content, class: "form-control C", id: "input-textbox" %>
+  </div>
+<div class="three-buttons">
+      <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
+    <% end %>
+  <button id="start", class="form_submit_button btn btn-info full-width conv-buttons">Record</button>
+  <button id="stop", class="form_submit_button btn btn-info full-width conv-buttons">Stop</button>
+</div>
 
-  <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}, html: { id: "input-form" }, remote: true  do |f| %>
-    <%= f.text_area :content, class: "form-control C", id: "input-textbox" %>
-    <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
-  <% end %>
-
-<script>
-var recognition = new webkitSpeechRecognition();
-recognition.continuous = true;
-recognition.lang = 'en-US';
-recognition.interimResults = true;
-recognition.maxAlternatives = 3;
-
-var output = document.getElementById('input-textbox');
-recognition.onresult = function(event) {
-  console.log('onresult', event, output)
-  output.textContent = event.results[0][0].transcript;
-  $("#input-textbox").val(event.results[0][0].transcript)
-};
-
-//when starting change icon
-recognition.onaudiostart = function() {
-  console.log('Audio capturing started');
-}
-
-//for ending change icon
-recognition.onaudioend = function() {
-  console.log('Audio capturing ended');
-}
-
-recognition.onspeechstart = function() {
-  console.log('Speech has been detected');
-}
-recognition.onspeechend = function() {
-  console.log('Speech has stopped being detected');
-}
-
-
-</script>
-
-<button onclick="recognition.start()">Start</button>
-<button onclick="recognition.stop()">Stop</button>

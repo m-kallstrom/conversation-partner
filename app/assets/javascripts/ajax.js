@@ -1,13 +1,21 @@
 
   $(document).ready(function() {
     $(document).bind('keypress',pressed);
-    console.log('doc ready')
+    console.log('doc ready');
+
   });
 
   $(document).on('turbolinks:load', function(){
-    console.log('tl load')
+    // console.log('tl load')
     sendButton();
     $('.A').hide();
+        $("#start").on("click", function(){
+    recognition.start();
+    });
+
+    $("#stop").on("click", function(){
+    recognition.stop();
+    });
   });
 
   function pressed(e) {
@@ -32,6 +40,7 @@ sendInput = function(event) {
       var output = "<li class='t-left'><span class='dialog'>you said: </span><br><span class='u-input'></span></li>"
       $("#output-form").append(output);
       $("#output-form .u-input:last").text(userInput);
+      $("#start-conv").hide();
 
 
       var $request = $.ajax({
@@ -44,44 +53,35 @@ sendInput = function(event) {
       $("#output-form").append(response);
       $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
 
-    })
+    });
+};
+
+
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'en-US';
+recognition.interimResults = true;
+recognition.maxAlternatives = 3;
+
+var output = $('#input-textbox');
+recognition.onresult = function(event) {
+  output.textContent = event.results[0][0].transcript;
+  $('#input-textbox').val(event.results[0][0].transcript)
+};
+
+//when starting change icon
+recognition.onaudiostart = function() {
+  console.log('Audio capturing started');
 }
 
-$("#start").on("click", function(){
-  recognition.start()
-  //add listening microphone gif
-})
+//for ending change icon
+recognition.onaudioend = function() {
+  console.log('Audio capturing ended');
+}
 
-$("#stop").on("click", function(){
-  recognition.stop()
-  //back to microphone icon
-})
-
-
-// var recognition = new webkitSpeechRecognition();
-// recognition.continuous = true;
-// recognition.lang = 'en-US';
-// recognition.interimResults = true;
-// recognition.maxAlternatives = 3;
-
-// var output = document.getElementById('input-textbox');
-// recognition.onresult = function(event) {
-//   output.textContent = event.results[0][0].transcript;
-// };
-
-// //when starting change icon
-// recognition.onaudiostart = function() {
-//   console.log('Audio capturing started');
-// }
-
-// //for ending change icon
-// recognition.onaudioend = function() {
-//   console.log('Audio capturing ended');
-// }
-
-// recognition.onspeechstart = function() {
-//   console.log('Speech has been detected');
-// }
-// recognition.onspeechend = function() {
-//   console.log('Speech has stopped being detected');
-// }
+recognition.onspeechstart = function() {
+  console.log('Speech has been detected');
+}
+recognition.onspeechend = function() {
+  console.log('Speech has stopped being detected');
+}
