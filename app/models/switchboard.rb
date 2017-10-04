@@ -46,7 +46,7 @@ class Switchboard
       headlines << item.title
     end
     headlines.sample
-end
+  end
 
 
   def self.get_learners_word(word)
@@ -77,9 +77,5 @@ private
   #   client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
   #   client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
   # end
-
-
-#Add dictionary API call
-#Add top new API call
 
 end
