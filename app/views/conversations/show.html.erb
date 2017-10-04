@@ -1,13 +1,17 @@
-<div class="profile profile-conversation">
-  <ul class="dialog-ul">
-    <% @conversation.sentences.each do |sentence| %>
-      <li class="t-left"><span class="dialog"> You said: </span><br> <%= sentence.content %></li>
-      <br>
-      <li class="t-right"><span class="dialog"> Response: </span><br> <%= sentence.response %><input onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='🔊 Hear me say this' /></li>
-    <% end %>
-  </ul>
-</div>
+<div id="main-conv" class="form-group main-conv">
+   <div class="">
+    <ul class="dialog-ul TA" id="output-form">
+      <% @conversation.sentences.each do |sentence| %>
 
+        <li class="t-left"><span class="li-item"><span class="dialog you">you said: </span><br> <div class="u-input"> <%= sentence.content %></div></span></li>
+
+        <li class="t-right"><span class="dialog"></span><abbr title="press to play"><input class="dialog" onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='response: 🔊' /></abbr><br><div class="w-input"> <%= sentence.response %></div></li>
+      <% end %>
+    </ul>
+  </div>
+
+<br>
 <div class="back-to-profile">
-  <%= link_to "go to profile", "/users/#{current_user.id}" %>
+  <%= link_to "go to profile", "/users/#{current_user.id}", class: "MT20px" %>
+</div>
 </div>
