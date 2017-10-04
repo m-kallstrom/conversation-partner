@@ -3,21 +3,19 @@
     $(document).bind('keypress',pressed);
     console.log('doc ready');
 
-    $("#start").on("click", function(){
-    recognition.start()
-  //add listening microphone gif
-    })
-
-  $("#stop").on("click", function(){
-    recognition.stop()
-  //back to microphone icon
-  })
   });
 
   $(document).on('turbolinks:load', function(){
     console.log('tl load')
     sendButton();
     $('.A').hide();
+        $("#start").on("click", function(){
+    recognition.start();
+    });
+
+    $("#stop").on("click", function(){
+    recognition.stop();
+    });
   });
 
   function pressed(e) {
@@ -54,9 +52,8 @@ sendInput = function(event) {
       $("#output-form").append(response);
       $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
 
-    })
-}
-
+    });
+};
 
 
 var recognition = new webkitSpeechRecognition();
@@ -65,9 +62,10 @@ recognition.lang = 'en-US';
 recognition.interimResults = true;
 recognition.maxAlternatives = 3;
 
-var output = document.getElementById('input-textbox');
+var output = $('#input-textbox');
 recognition.onresult = function(event) {
   output.textContent = event.results[0][0].transcript;
+  $('#input-textbox').val(event.results[0][0].transcript)
 };
 
 //when starting change icon
