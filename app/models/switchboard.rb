@@ -13,7 +13,7 @@ class Switchboard
   # returns hash
   def self.gingerice_response(sentence)
     parser = Gingerice::Parser.new
-    parser.parse sentence
+    p parser.parse sentence
   end
 
   def self.get_definition(word)
@@ -69,8 +69,9 @@ private
       user_name ="user#{user.id}"
     end
     watson = load_watson
-    init_response = watson.talk(user_name, "Hi")
-    response = watson.talk(user_name, sentence)
+    init_response = watson.talk(user_name, "")
+    p "----------------------------------"
+    p response = watson.talk(user_name, sentence)
   end
 
   def self.call_oxford_dictionary

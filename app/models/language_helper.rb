@@ -22,8 +22,9 @@ class LanguageHelper
 
         mistakes.each do |mistake|
           allowed = ["i", "my"]
+
           word = LanguageHelper.strip_punctuation(mistake['correct'].split(" ").last)
-          if !allowed.include?(word.downcase) && word.length >= 4
+          if !allowed.include?(word.downcase) && word.length >= 4 && mistake['text'].capitalize != mistake['correct']
             TroubleWord.create(corrected_word: word.downcase, correction: correction)
           end
         end
@@ -64,6 +65,7 @@ class LanguageHelper
       definition = word.definitions.first
       "Try using this word in a sentence: #{word.corrected_word}. It means '#{definition}'."
     else
+      return "JOKE ROUTE" if word.nil?
       "Try using this word in a sentence: #{word.corrected_word}."
     end
   end
