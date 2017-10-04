@@ -55,6 +55,16 @@ class Switchboard
     Net::HTTP.get(uri)
   end
 
+  def self.watson_init(user)
+    if user.nil?
+      user_name = "test"
+    else
+      user_name ="user#{user.id}"
+    end
+    watson = load_watson
+    watson.talk(user_name, "")
+  end
+
 private
 
   def self.load_watson
@@ -69,8 +79,10 @@ private
       user_name ="user#{user.id}"
     end
     watson = load_watson
-    init_response = watson.talk(user_name, "Hi")
-    response = watson.talk(user_name, sentence)
+
+    p sentence
+    p "----------------------------------"
+    p response = watson.talk(user_name, sentence)
   end
 
   # def self.call_oxford_dictionary

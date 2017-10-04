@@ -11,12 +11,7 @@ class ConversationsController < ApplicationController
   def new
 
     @sentence = Sentence.new
-    current_conversation ||= @conversation = Conversation.new
-  end
-
-  # POST /conversations
-  def create
-    if current_conversation
+     if current_conversation
       @conversation = Conversation.find(current_conversation.id)
     else
       if current_user
@@ -24,9 +19,15 @@ class ConversationsController < ApplicationController
       else
         @conversation = Conversation.create
       end
+      Switchboard.watson_init(current_user)
       session[:conversation_id] = @conversation.id
     end
 
+  end
+
+  # POST /conversations
+  def create
+    @conversation = Conversation.find(current_conversation.id)
     @sentence = Sentence.create(sentence_params)
     @sentence.user = current_user
     @sentence.conversation = @conversation
