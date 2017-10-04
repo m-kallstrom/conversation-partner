@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
 
     @sentence = Sentence.new
      if current_conversation
-      @conversation = Conversation.find(current_conversation.id)
+      @conversation = Conversation.find_by(id: current_conversation.id)
     else
       if current_user
         @conversation = Conversation.create(user_id: current_user.id)
@@ -27,7 +27,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations
   def create
-    @conversation = Conversation.find(current_conversation.id)
+    @conversation = Conversation.find_by(id: current_conversation.id)
     @sentence = Sentence.create(sentence_params)
     @sentence.user = current_user
     @sentence.conversation = @conversation
