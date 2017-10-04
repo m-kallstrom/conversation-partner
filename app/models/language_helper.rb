@@ -104,6 +104,10 @@ class LanguageHelper
           response = news_item
         elsif response == "word_of_the_day"
           response = daily_word
+        elsif response == "tongue_twister"
+          response = ExtraContent.tongue_twister
+        elsif response == "joke"
+          response = ExtraContent.joke
         end
       end
     end
