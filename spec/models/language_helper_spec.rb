@@ -10,7 +10,7 @@ RSpec.describe LanguageHelper, type: :model do
 
   #I don't think this is going to work online without the env?
   it "calls gingerice gem to check grammar" do
-    expect(LanguageHelper.craft_response(sentence.content, user)).to eq "Gingerice: I went to the store ||| Watson: This is the shopping route."
+    expect(LanguageHelper.craft_response(sentence.content, user)).to eq("Gingerice: I went to the store ||| Watson: This is the shopping route.").or eq("Gingerice: I went to the store ||| Watson: Not Authorized")
   end
 
   it "calls EngTagger to get parts of speech" do
