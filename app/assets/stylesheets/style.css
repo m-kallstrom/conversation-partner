@@ -80,7 +80,7 @@ label {
 
 .conversation  {
 /*background color in conversation*/
-  background: #E8F5E9;
+  /*background: #E8F5E9;*/
   height: 100%;
 }
 
@@ -107,7 +107,7 @@ label {
   min-height: 100px;
   height:auto;
 /*background color in response textarea */
-  background-color: #FFD180;
+  /*background-color: #FFD180;*/
   color: green;
 }
 
@@ -201,7 +201,8 @@ label {
 }
 
 .dialog {
-  color: blue;
+  color: #00B388;
+  font-size: 0.6em;
 }
 
 .dialog-ul {
@@ -211,6 +212,17 @@ label {
   padding: 5px;
   border-radius: 10px;
 }
+
+.u-input, .w-input {
+  color: #005035;
+  border: 0.1em ridge #FF063B;
+  border-width: thin;
+  word-wrap: break-word;
+  border-radius: 7px;
+  padding: 3px 6px;
+  max-width: 75%;
+}
+
 
 /*************************************/
 
