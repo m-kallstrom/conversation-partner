@@ -30,7 +30,7 @@ class ExtraContent
       "Where can you find an ocean without water? \n\n On a map!",
       "What do you call a fish without an eye? \n\n A fsh." ]
     joke = j.sample
-    "I have a joke for you:  #{joke} \n\n How was it?"
+    "I have a joke for you:  #{joke}"
   end
 
 
@@ -48,7 +48,7 @@ class ExtraContent
       "To 'play it by ear' means 'to do something without a plan and to make decisions without a plan.' For example:  'I didn't plan the camping trip, so let's meet at the park and then we'll play it by ear.'",
       "'I can't wait' means that you are really excited for something and looking forward to it. For example:  'I can't wait to see my favorite band next week!'"]
     english_phrase = ep.sample
-    "Here's something we say a lot in English: #{english_phrase}.  Try to use it in your own sentence!"
+    "Here's something we say a lot in English: '#{english_phrase}.'  Try to use it in your own sentence!"
   end
 
 
