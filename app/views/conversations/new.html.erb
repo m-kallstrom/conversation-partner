@@ -21,40 +21,7 @@
 <div class="three-buttons">
       <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
     <% end %>
-
-  <button onclick="recognition.start()", class="form_submit_button btn btn-info full-width conv-buttons">Record</button>
-  <button onclick="recognition.stop()", class="form_submit_button btn btn-info full-width conv-buttons">Stop</button>
+  <button id="start", class="form_submit_button btn btn-info full-width conv-buttons">Record</button>
+  <button id="stop", class="form_submit_button btn btn-info full-width conv-buttons">Stop</button>
 </div>
-<script>
-var recognition = new webkitSpeechRecognition();
-recognition.continuous = true;
-recognition.lang = 'en-US';
-recognition.interimResults = true;
-recognition.maxAlternatives = 3;
 
-var output = document.getElementById('input-textbox');
-recognition.onresult = function(event) {
-  console.log('onresult', event, output)
-  output.textContent = event.results[0][0].transcript;
-  $("#input-textbox").val(event.results[0][0].transcript)
-};
-
-//when starting change icon
-recognition.onaudiostart = function() {
-  console.log('Audio capturing started');
-}
-
-//for ending change icon
-recognition.onaudioend = function() {
-  console.log('Audio capturing ended');
-}
-
-recognition.onspeechstart = function() {
-  console.log('Speech has been detected');
-}
-recognition.onspeechend = function() {
-  console.log('Speech has stopped being detected');
-}
-
-
-</script>
