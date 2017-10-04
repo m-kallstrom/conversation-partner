@@ -2,6 +2,7 @@
   open = function(){
         $('.nav-open').click(function() {
         document.getElementById("navbar").style.width = "70%";
+        document.getElementById("navbar").style.height = "100%";
         document.getElementById("left-side-close").style.width = "30%";
         document.getElementById("left-side-close").style.display = "block";
       })
@@ -11,6 +12,7 @@
   close = function(){
         $('.nav-close').click(function() {
         document.getElementById("navbar").style.width = "0";
+        document.getElementById("navbar").style.height = "0";
         document.getElementById("left-side-close").style.width = "0";
         document.getElementById("left-side-close").style.display = "none";
       })
