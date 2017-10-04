@@ -20,11 +20,11 @@ class Switchboard
     results = DictionaryLookup::Base.define(word)
   end
 
-  def self.oxford_dictionary_response(word)
-    client = call_dictionary
-    entry = client.entry[word]
-    entry.lexical_entries.entries.senses
-  end
+  # def self.oxford_dictionary_response(word)
+  #   client = call_oxford_dictionary
+  #   entry = client.entry[word]
+  #   entry.lexical_entries.entries.senses
+  # end
 
   def self.scrape_daily_word
     page = Nokogiri::HTML(open("http://www.learnersdictionary.com/word-of-the-day/"))
@@ -73,9 +73,9 @@ private
     response = watson.talk(user_name, sentence)
   end
 
-  def self.call_oxford_dictionary
-    client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-    client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-  end
+  # def self.call_oxford_dictionary
+  #   client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
+  #   client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
+  # end
 
 end
