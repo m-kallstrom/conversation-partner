@@ -224,7 +224,7 @@ label {
   margin-left: -15px;
   /*font-style: */
   font-family: 'Ubuntu', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.4em;
   letter-spacing: 2px;
   /*opacity: .99;*/
   overflow: visible;
@@ -243,10 +243,16 @@ label {
 
 .nav-open {
   position: relative;
-  /*z-index: 10000;*/
-  padding: 0 10px;
   color: #FF7043;   /*#999999;*/
   float: right;
+  font-size:30px;
+  cursor:pointer;
+  margin-top: -6px;
+  margin-right: -11px;
+}
+
+#hello {
+  color: #007bff;
 }
 
 .nav-close {
@@ -345,7 +351,11 @@ label {
   min-width: 32px;
 }
 
-.u-input, .w-input {
+/********* adding speech bubbles ******************/
+
+.u-input, .w-input, .border-right, .border-left {
+  position: relative;
+
   max-width: 80%;
   width: auto;
   color: #005035;
@@ -354,9 +364,45 @@ label {
   word-wrap: normal;
   border-radius: 7px;
   padding: 3px 6px;
-  /*max-width: 50%;*/
   margin: 3px;
 }
+
+.border-right:before {
+  content: ' ';
+  position: absolute;
+  /*width: 0;*/
+  /*height: 0;*/
+  /*left: auto;*/
+  right: -8px;
+  top: -1px;
+      /*overflow:hidden;*/
+
+  /*bottom: auto;*/
+  border: 7px solid;
+  border-color: #FF063B transparent transparent transparent;
+}
+.border-right:after{
+  content: ' ';
+  position: absolute;
+  /*width: 0;*/
+  /*height: 0;*/
+  /*left: auto;*/
+      overflow:hidden;
+  /*right: auto;*/
+
+  /*right: -20px;*/
+  top: 0px;
+  bottom: auto;
+  border: 6px solid;
+  border-color: white transparent transparent transparent;
+}
+
+.u-input, .w-input {
+  border: 1px solid #FF063B !important;
+}
+
+/************************************************/
+
 
 .you {
   margin-left: 5px;
