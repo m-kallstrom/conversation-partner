@@ -4,7 +4,7 @@
     <ul class="dialog-ul TA" id="output-form">
       <% @conversation.sentences.each do |sentence| %>
 
-        <li class="t-left"><span class="li-item"><span class="dialog you">you said: </span><br> <div class="u-input"> <%= sentence.content %></div></span></li>
+        <li class="t-left"><span class="li-item"><span class="dialog you">you said: </span><br> <div class="u-input border-left"> <%= sentence.content %></div></span></li>
 
         <li class="t-right"><span class="dialog"></span><abbr title="press to play"><input class="dialog" onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='response: 🔊' /></abbr><br><div class="w-input border-right"> <%= sentence.response %></div></li>
       <% end %>
