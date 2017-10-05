@@ -5,10 +5,9 @@ class Switchboard
 
   #returns string
   def self.watson_response(sentence, user)
-    p "going to watson *******"
     response = call_watson(sentence, user)
     json = JSON.parse(response)
-    response = json['output'][0]
+    p response = json['output'][0]
     if response.nil? || response == "trouble_word"
       response = LanguageHelper.mention_trouble_word(user)
     elsif response == "news_item"

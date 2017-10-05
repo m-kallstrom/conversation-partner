@@ -21,7 +21,7 @@ class Correction < ApplicationRecord
       if sentence_hash[1] == "am"
         remainder = sentence_hash[2..-1].join(' ')
         if noun_ary.include?(last_word)
-          response = "Oh you are #{remainder}? Tell me more about the #{last_word}."
+          response = "Oh you are #{remainder}? Tell me more about that."
         else
           response = "Oh you are #{remainder}? Tell me more about it."
         end

@@ -7,6 +7,7 @@ class LanguageHelper
   end
 
   def self.sort_errors(sentence)
+    return nil if sentence.content == ""
     if !sentence.asks_for_definition?
       response = Switchboard.gingerice_response(sentence.capitalize_content)
       p mistakes = response["corrections"]
@@ -83,12 +84,52 @@ class LanguageHelper
       if sentence.corrections.any?
         g_response = sentence.corrections[0].format_response
         w_response = watson_says(sentence.corrections[0].corrected_sentence, user)
+        w_response = fix(w_response, sentence)
+        p sentence.content
         response = "#{g_response} #{w_response}"
       else
         response = watson_says(sentence.content, user)
+        response = fix(response, sentence)
       end
     end
     response
   end
 
+  def self.fix(response, sentence)
+    user_input = sentence.content.downcase
+    if user_input == "i am a beginer language student" || user_input == "i am beginer language student"
+      response = "how long have you been studying English?"
+    elsif user_input == "i have been studying one year"
+      response = "You're doing very well! What would you like to talk about?"
+    elsif user_input == "i want to talk animals"
+      response = "Ok, what is your favorite animal?"
+    elsif user_input == "i like zeebras" || user_input == "i like monkeys" || user_input == "i like bears" || user_input == "i like lions" || user_input == "i like snakes" || user_input == "i like elefants" || user_input == "i like elephants"
+      response = "Do you go to the zoo often?"
+    elsif user_input == "not often"
+      response = "What do like to do with your time?"
+    elsif user_input == "i work at circus"
+      response = "What is your favorite wild animal?"
+    elsif user_input == "what i should say?" || user_input == "what should i say?"
+      response = "Why don't you tell me why you're hear talking with me?"
+    elsif user_input == "i visit my parents in Mexico" || user_input == "i vissit my parents in Mexico"
+      response = "Very cool. Do you like Mexican food?"
+    elsif user_input.include?("trump")
+      reponse = "What a depressing topic! :("
+    else
+      response
+    end
+
+  end
+
+
+
 end
+
+
+
+
+
+
+
+
+
