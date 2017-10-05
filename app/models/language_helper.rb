@@ -7,6 +7,7 @@ class LanguageHelper
   end
 
   def self.sort_errors(sentence)
+    return nil if sentence.content == ""
     if !sentence.asks_for_definition?
       response = Switchboard.gingerice_response(sentence.capitalize_content)
       p mistakes = response["corrections"]
