@@ -6,7 +6,7 @@
 
         <li class="t-left"><span class="li-item"><span class="dialog you">you said: </span><br> <div class="u-input"> <%= sentence.content %></div></span></li>
 
-        <li class="t-right"><span class="dialog"></span><input class="dialog" onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='response: 🔊' /> <br> <div class="w-input"> <%= sentence.response %></div></li>
+        <li class="t-right"><span class="dialog"></span><abbr title="press to play"><input class="dialog" onclick='responsiveVoice.speak("<%= sentence.response %>");' type='button' value='response: 🔊' /></abbr><br><div class="w-input"> <%= sentence.response %></div></li>
       <% end %>
     </ul>
   </div>
@@ -14,11 +14,11 @@
    <%= link_to 'Refresh This Conversation!', '/conversations/main',  class: "btn btn-success C input conv-buttons A" %>
    <%= link_to 'Start a New Conversation!', reset_conversation_path, class: "btn btn-success C input conv-buttons A" %>
 </div>
+<div class="three-buttons">
     <%= form_for @sentence, url: {action: 'create', controller: 'conversations', method: 'POST'}, html: { id: "input-form" }, remote: true  do |f| %>
   <div id="In-form">
       <%= f.text_area :content, class: "form-control C", id: "input-textbox" %>
   </div>
-<div class="three-buttons">
       <%= f.submit 'Send', class: "form_submit_button btn btn-info full-width conv-buttons" %>
     <% end %>
   <button id="start", class="form_submit_button btn btn-info full-width conv-buttons">Record</button>
