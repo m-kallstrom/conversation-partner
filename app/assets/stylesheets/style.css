@@ -125,7 +125,7 @@ label {
 
 .profile {
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
@@ -154,7 +154,7 @@ label {
 .trouble-words {
   column-count: 2;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
@@ -231,6 +231,7 @@ label {
 }
 
 .navbarr {
+  z-index: 10;
   /*max-width: 600px;*/
   margin: 0 auto;
   position: fixed;
@@ -359,7 +360,7 @@ label {
   max-width: 80%;
   width: auto;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
@@ -370,27 +371,15 @@ label {
 .border-right:before {
   content: ' ';
   position: absolute;
-  /*width: 0;*/
-  /*height: 0;*/
-  /*left: auto;*/
   right: -8px;
   top: -1px;
-      /*overflow:hidden;*/
-
-  /*bottom: auto;*/
   border: 7px solid;
   border-color: #FF063B transparent transparent transparent;
 }
 .border-right:after{
   content: ' ';
   position: absolute;
-  /*width: 0;*/
-  /*height: 0;*/
-  /*left: auto;*/
-      overflow:hidden;
-  /*right: auto;*/
-
-  /*right: -20px;*/
+  overflow:hidden;
   top: 0px;
   bottom: auto;
   border: 6px solid;
@@ -400,27 +389,16 @@ label {
 .border-left:before {
   content: ' ';
   position: absolute;
-  /*width: 0;*/
-  /*height: 0;*/
-  /*left: auto;*/
   left: -8px;
   top: -1px;
-      /*overflow:hidden;*/
-
-  /*bottom: auto;*/
   border: 7px solid;
   border-color: #FF063B transparent transparent transparent;
 }
 .border-left:after{
   content: ' ';
   position: absolute;
-  /*width: 0;*/
-  /*height: 0;*/
   left: -6px;
-      overflow:hidden;
-  /*right: auto;*/
-
-  /*right: -20px;*/
+  overflow:hidden;
   top: 0px;
   bottom: auto;
   border: 6px solid;
@@ -428,7 +406,7 @@ label {
 }
 
 .u-input, .w-input {
-  border: 1px solid #FF063B !important;
+  /*border: 1px solid #FF063B !important;*/
 }
 
 /************************************************/
@@ -461,7 +439,7 @@ label {
   height: 100%;
   max-width: 90%;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
