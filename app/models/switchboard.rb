@@ -5,6 +5,7 @@ class Switchboard
 
   #returns string
   def self.watson_response(sentence, user)
+    p "going to watson *******"
     response = call_watson(sentence, user)
     json = JSON.parse(response)
     response = json['output'][0]
@@ -69,15 +70,15 @@ class Switchboard
     Net::HTTP.get(uri)
   end
 
-  def self.watson_init(user)
-    if user.nil?
-      user_name = "test"
-    else
-      user_name ="user#{user.id}"
-    end
-    watson = load_watson
-    watson.talk(user_name, "")
-  end
+  # def self.watson_init(user)
+  #   if user.nil?
+  #     user_name = "test"
+  #   else
+  #     user_name ="user#{user.id}"
+  #   end
+  #   watson = load_watson
+  #   watson.talk(user_name, " ")
+  # end
 
 private
 
@@ -92,11 +93,12 @@ private
     else
       user_name ="user#{user.id}"
     end
-    watson = load_watson
 
-    p sentence
-    p "----------------------------------"
-    p response = watson.talk(user_name, sentence)
+    watson = load_watson
+    watson.talk(user_name, " ")
+    # sleep(0.03)
+
+    response = watson.talk(user_name, sentence)
   end
 
   # def self.call_oxford_dictionary

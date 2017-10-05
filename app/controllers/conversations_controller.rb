@@ -19,10 +19,8 @@ class ConversationsController < ApplicationController
       else
         @conversation = Conversation.create
       end
-      Switchboard.watson_init(current_user)
       session[:conversation_id] = @conversation.id
     end
-
   end
 
   # POST /conversations
