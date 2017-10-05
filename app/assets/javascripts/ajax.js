@@ -37,7 +37,7 @@ sendInput = function(event) {
       var userInput = $form.find('textarea').val();
       $form.find('textarea').val("");
       var data = { sentence: {content: userInput} };
-      var output = "<li class='t-left'><span class='dialog'>you said: </span><br><span class='u-input'></span></li>"
+      var output = "<li class='t-left'><span class='dialog'>you said: </span><br><span class='u-input border-left'></span></li>"
 
       $("#output-form").append(output);
       $("#output-form .u-input:last").text(userInput);

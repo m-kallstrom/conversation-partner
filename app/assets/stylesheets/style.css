@@ -2,10 +2,12 @@ body {
   height: 100%;
   font-family: 'Raleway', sans-serif;
   margin: 0 auto;
+  /*background-color: red;*/
 }
 
   div.fix-width {
-    max-width: 400px;
+    max-width: 600px;
+    width: 100%;
     margin: auto;
   }
 
@@ -53,7 +55,11 @@ label {
   opacity: .8;
   /*width: 80%;*/
   /*margin-right: 50px;*/
+}
 
+.W {
+  margin: 0 auto;
+  max-width: 75%;
 }
 
 .C {
@@ -95,6 +101,7 @@ label {
 }
 
 .main-conv {
+  /*background-color: pink;*/
   height: 100%;
   margin: 0 auto;
   max-width: 600px;
@@ -118,11 +125,13 @@ label {
 
 .profile {
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
   padding: 8px;
+  max-width: 600px;
+  margin: 0 auto;
 
 }
 
@@ -132,7 +141,7 @@ label {
   padding: 3px 6px;
   vertical-align: center;
   margin: 0 auto;
-  margin-top: 30%;
+  margin-top: 20%;
   text-align: center;
 }
 
@@ -145,17 +154,18 @@ label {
 .trouble-words {
   column-count: 2;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
   padding: 8px;
   height: 100%;
   max-width: 90%;
+  margin: 0 auto;;
   padding: 3px 6px;
   vertical-align: center;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 7%;
   text-align: center;
 }
 
@@ -165,27 +175,85 @@ label {
 }
 
 /************************************/
-.profile-conversation {
+/*#send {
+  float: right;
+  margin-right: 15%;
+}
 
+#stop {
+  display: block;
+  float: right;
+  margin-right: 7%;
+}
+
+#start{
+  display: block;
+  float: right;
+  margin-right: 7%;
+}*/
+
+#send {
+  float: right;
+  margin-right: 18%;
+}
+
+#stop {
+  display: block;
+  float: right;
+  margin-right: 3px;
+}
+
+#start{
+  display: block;
+  float: right;
+  margin-right: 3px;
 }
 
 /************ menu bar *************/
 
-.navbarr {
-  max-width: 600px;
+#name {
+  position: fixed;
+  /*z-index: 1;*/
+  text-align: center;
+  width: 100%;
+  /*max-width: 600px;*/
+  color: white; /*#FF7043;*/
+  background-color: #007bff; /*#90A4AE;*/
   margin: 0 auto;
-  /*position: fixed;*/
+  padding-left: 0px;
+  margin-left: -15px;
+  /*font-style: */
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.4em;
+  letter-spacing: 2px;
+  /*opacity: .99;*/
+  overflow: visible;
+}
+
+.navbarr {
+  z-index: 10;
+  /*max-width: 600px;*/
+  margin: 0 auto;
+  position: fixed;
   width: 100%;
   -webkit-backface-visibility: hidden;
-  z-index: 100;
+  /*z-index: 100;*/
   text-align: center;
   white-space: nowrap;
 }
 
 .nav-open {
-  padding: 0 10px;
-  color: #999999;
+  position: relative;
+  color: #FF7043;   /*#999999;*/
   float: right;
+  font-size:30px;
+  cursor:pointer;
+  margin-top: -6px;
+  margin-right: -11px;
+}
+
+#hello {
+  color: #007bff;
 }
 
 .nav-close {
@@ -235,7 +303,11 @@ label {
   color: lightgray;
 }
 
-/*****************************************/
+/************** main ***************************/
+
+#start-conv {
+  text-align: center !important;
+}
 
 .t-left {
   text-align: left;
@@ -280,18 +352,65 @@ label {
   min-width: 32px;
 }
 
-.u-input, .w-input {
+/********* adding speech bubbles ******************/
+
+.u-input, .w-input, .border-right, .border-left {
+  position: relative;
+
   max-width: 80%;
   width: auto;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
   padding: 3px 6px;
-  /*max-width: 50%;*/
   margin: 3px;
 }
+
+.border-right:before {
+  content: ' ';
+  position: absolute;
+  right: -8px;
+  top: -1px;
+  border: 7px solid;
+  border-color: #FF063B transparent transparent transparent;
+}
+.border-right:after{
+  content: ' ';
+  position: absolute;
+  overflow:hidden;
+  top: 0px;
+  bottom: auto;
+  border: 6px solid;
+  border-color: white transparent transparent transparent;
+}
+
+.border-left:before {
+  content: ' ';
+  position: absolute;
+  left: -8px;
+  top: -1px;
+  border: 7px solid;
+  border-color: #FF063B transparent transparent transparent;
+}
+.border-left:after{
+  content: ' ';
+  position: absolute;
+  left: -6px;
+  overflow:hidden;
+  top: 0px;
+  bottom: auto;
+  border: 6px solid;
+  border-color: white transparent transparent transparent;
+}
+
+.u-input, .w-input {
+  /*border: 1px solid #FF063B !important;*/
+}
+
+/************************************************/
+
 
 .you {
   margin-left: 5px;
@@ -300,6 +419,10 @@ label {
 #In-form {
   padding-top: 10px;
   clear: both;
+}
+
+#In-form textarea {
+  border: 1px solid #007bff;
 }
 
 .three-buttons buttons {
@@ -314,16 +437,16 @@ label {
 
 .daily-word {
   height: 100%;
-  max-width: 80%;
+  max-width: 90%;
   color: #005035;
-  border: 0.1em ridge #FF063B;
+  border: 0.1em solid #FF063B;
   border-width: thin;
   word-wrap: normal;
   border-radius: 7px;
   padding: 3px 6px;
   vertical-align: center;
   margin: 0 auto;
-  margin-top: 35%;
+  margin-top: 25%;
   text-align: center;
 }
 
@@ -358,6 +481,22 @@ label {
   list-style: none;
   padding-left: 0;
   border-radius: 5px;
+}
+
+/******************************************/
+
+@media only screen and (min-width: 400px) {
+  #send {
+  margin-right: 30%;
+  }
+
+  .trouble-words {
+    max-width: 600px;
+  }
+
+  .daily-word {
+    max-width: 600px;
+  }
 }
 
 
