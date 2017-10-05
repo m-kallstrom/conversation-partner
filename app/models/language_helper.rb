@@ -110,7 +110,7 @@ class LanguageHelper
     elsif user_input == "i work at circus"
       response = "What is your favorite wild animal?"
     elsif user_input == "what i should say?" || user_input == "what should i say?"
-      response = "Why don't you tell me why you're hear talking with me?"
+      response = "Why don't you tell me why you're here talking with me?"
     elsif user_input == "i visit my parents in Mexico" || user_input == "i vissit my parents in Mexico"
       response = "Very cool. Do you like Mexican food?"
     elsif user_input.include?("trump")
