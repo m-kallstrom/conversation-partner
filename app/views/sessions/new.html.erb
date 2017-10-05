@@ -1,10 +1,10 @@
 <div class="fix-width">
   <%= form_for :session do |f| %>
     <%= f.label :email %><br>
-    <%= f.text_field :email, class: "full-width form-control input", id: "validationServer01", placeholder: 'Email'%>
+    <%= f.text_field :email, class: "full-width form-control input W", id: "validationServer01", placeholder: 'Email'%>
     <br>
     <%= f.label :password %>
-    <%= f.password_field :password, class: "full-width form-control input", id: "validationDefault02", placeholder: 'Password' %>
+    <%= f.password_field :password, class: "full-width form-control input W", id: "validationDefault02", placeholder: 'Password' %>
     <br>
     <div class="error">
       <% if @errors %>
