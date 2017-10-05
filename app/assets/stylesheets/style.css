@@ -212,20 +212,38 @@ label {
 
 /************ menu bar *************/
 
-.navbarr {
-  max-width: 600px;
+#name {
+  position: fixed;
+  z-index: 50;
+  text-align: center;
+  width: 100%;
+  /*max-width: 600px;*/
+  color: white; /*#FF7043;*/
+  background-color: #007bff; /*#90A4AE;*/
   margin: 0 auto;
-  /*position: fixed;*/
+  padding-left: 0px;
+  margin-left: -15px;
+  font-size: 1.3em;
+  letter-spacing: 2px;
+
+  overflow: visible;
+}
+
+.navbarr {
+  /*max-width: 600px;*/
+  margin: 0 auto;
+  position: fixed;
   width: 100%;
   -webkit-backface-visibility: hidden;
-  z-index: 100;
+  /*z-index: 100;*/
   text-align: center;
   white-space: nowrap;
 }
 
 .nav-open {
+  z-index: 10000;
   padding: 0 10px;
-  color: #999999;
+  color: #FF7043;   /*#999999;*/
   float: right;
 }
 
@@ -276,7 +294,10 @@ label {
   color: lightgray;
 }
 
-/*****************************************/
+/************** main ***************************/
+#start-conv {
+  text-align: center !important;
+}
 
 .t-left {
   text-align: left;
