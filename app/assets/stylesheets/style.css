@@ -6,7 +6,7 @@ body {
 }
 
   div.fix-width {
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
     margin: auto;
   }
@@ -422,7 +422,7 @@ label {
 }
 
 #In-form textarea {
-  border: 1px solid #007bff;;
+  border: 1px solid #007bff;
 }
 
 .three-buttons buttons {
