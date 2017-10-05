@@ -170,8 +170,44 @@ label {
 }
 
 /************************************/
-.profile-conversation {
+/*#send {
+  float: right;
+  margin-right: 15%;
+}
 
+#stop {
+  display: block;
+  float: right;
+  margin-right: 7%;
+}
+
+#start{
+  display: block;
+  float: right;
+  margin-right: 7%;
+}*/
+
+#send {
+  float: right;
+  margin-right: 18%;
+}
+
+#stop {
+  display: block;
+  float: right;
+  margin-right: 3px;
+}
+
+#start{
+  display: block;
+  float: right;
+  margin-right: 3px;
+}
+
+@media only screen and (min-width: 400px) {
+  #send {
+  margin-right: 30%;
+  }
 }
 
 /************ menu bar *************/
