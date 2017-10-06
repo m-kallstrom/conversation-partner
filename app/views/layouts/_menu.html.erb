@@ -9,7 +9,7 @@
       <a href="javascript:void(0)" class="nav-close">&times;</a>
     <% if current_user %>
        <p id="hello"> Hello, <%= current_user.username %>!</p>
-       <%= link_to "profile", "/users/#{current_user.id}" %>
+       <%= link_to "Profile", "/users/#{current_user.id}" %>
        <%= link_to 'New Conversation!', reset_conversation_path %>
        <%= link_to 'Daily word', "/daily_word" %>
        <%= link_to 'Read about us!', '/about' %>
