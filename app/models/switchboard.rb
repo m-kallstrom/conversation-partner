@@ -7,7 +7,7 @@ class Switchboard
   def self.watson_response(sentence, user)
     response = call_watson(sentence, user)
     json = JSON.parse(response)
-    p response = json['output'][0]
+    response = json['output'][0]
     if response.nil? || response == "trouble_word"
       response = LanguageHelper.mention_trouble_word(user)
     elsif response == "news_item"
@@ -33,12 +33,6 @@ class Switchboard
   def self.get_definition(word)
     results = DictionaryLookup::Base.define(word)
   end
-
-  # def self.oxford_dictionary_response(word)
-  #   client = call_oxford_dictionary
-  #   entry = client.entry[word]
-  #   entry.lexical_entries.entries.senses
-  # end
 
   def self.scrape_daily_word
     page = Nokogiri::HTML(open("http://www.learnersdictionary.com/word-of-the-day/"))
@@ -69,16 +63,6 @@ class Switchboard
     Net::HTTP.get(uri)
   end
 
-  # def self.watson_init(user)
-  #   if user.nil?
-  #     user_name = "test"
-  #   else
-  #     user_name ="user#{user.id}"
-  #   end
-  #   watson = load_watson
-  #   watson.talk(user_name, " ")
-  # end
-
 private
 
   def self.load_watson
@@ -92,17 +76,10 @@ private
     else
       user_name ="user#{user.id}"
     end
-
     watson = load_watson
     watson.talk(user_name, " ")
     # sleep(0.03)
-
     response = watson.talk(user_name, sentence)
   end
-
-  # def self.call_oxford_dictionary
-  #   client = OxfordDictionary::Client.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-  #   client = OxfordDictionary.new(ENV['OXFORD_API_ID'], app_key: ENV['OXFORD_API_KEY'])
-  # end
 
 end
