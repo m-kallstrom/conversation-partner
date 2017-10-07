@@ -84,11 +84,9 @@ class LanguageHelper
       if sentence.corrections.any?
         g_response = sentence.corrections[0].format_response
         w_response = watson_says(sentence.corrections[0].corrected_sentence, user)
-        w_response = fix(w_response, sentence)
         response = "#{g_response} #{w_response}"
       else
         response = watson_says(sentence.content, user)
-        response = fix(response, sentence)
       end
     end
     response
