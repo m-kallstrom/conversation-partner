@@ -22,7 +22,7 @@ Start by sending a greeting and then respond to Conversation Partner. If you mak
 
 If you sign up, you can view your past conversations and a list of the words you've had trouble with in the past.
 
-![Landing page and main chat screen](/views.png)
+![Landing page and main chat screen](app/assets/images/views.png)
 
 ## Live version
 
